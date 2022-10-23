@@ -1,0 +1,11 @@
+###############################################################################
+# Salt minion base pillar
+###############################################################################
+
+salt:
+  install_packages: {{ stack['digitastuces']['servers']['salt']['install_packages'] }}
+  version: {{ stack['digitastuces']['servers']['salt']['package_version'] }}
+  minion_remove_config: True
+  minion:
+    master: {{ stack['digitastuces']['servers']['salt']['master'] }}
+    saltenv: production
