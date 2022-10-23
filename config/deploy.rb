@@ -2,7 +2,7 @@
 lock "~> 3.17.1"
 
 set :application, 'salt_states'
-set :repo_url, 'git@github.com:digitastuces/salt_states.git'
+set :repo_url, 'git@github.com:digitastuces/saltstates.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
