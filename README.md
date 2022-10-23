@@ -1,1 +1,5 @@
-# salt_states
+SALTSTATES
+----------
+
+
+![archi](./images/architecture.png)
