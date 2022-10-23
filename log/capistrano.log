@@ -2119,3 +2119,77 @@ INFO 2022/10/23 20:58:38 [salt-formula] Fetching git::https://github.com/saltsta
  DEBUG [f2c30ba2] Command: sudo systemctl restart salt-master.service
  DEBUG [f2c30ba2] 	sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
  DEBUG [f2c30ba2] 	sudo: a password is required
+  INFO ---------------------------------------------------------------------------
+  INFO START 2022-10-23 21:03:26 +0200 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [93a11e7a] Running /usr/bin/env mkdir -p /tmp as salt@galaxy.digitastuces.com
+ DEBUG [93a11e7a] Command: /usr/bin/env mkdir -p /tmp
+  INFO [93a11e7a] Finished in 5.166 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-7f5573f66114dbf5b67e.sh 0.0%
+  INFO Uploading /tmp/git-ssh-7f5573f66114dbf5b67e.sh 100.0%
+  INFO [947aff0f] Running /usr/bin/env chmod 700 /tmp/git-ssh-7f5573f66114dbf5b67e.sh as salt@galaxy.digitastuces.com
+ DEBUG [947aff0f] Command: /usr/bin/env chmod 700 /tmp/git-ssh-7f5573f66114dbf5b67e.sh
+  INFO [947aff0f] Finished in 1.313 seconds with exit status 0 (successful).
+  INFO [ea47d182] Running /usr/bin/env git ls-remote git@github.com:digitastuces/saltstates.git HEAD as salt@galaxy.digitastuces.com
+ DEBUG [ea47d182] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env git ls-remote git@github.com:digitastuces/saltstates.git HEAD )
+ DEBUG [ea47d182] 	6dafd3b2ebdeccad3e78e2438dc94367c78b3c7b	HEAD
+  INFO [ea47d182] Finished in 5.035 seconds with exit status 0 (successful).
+  INFO [3200f358] Running /usr/bin/env mkdir -p /srv/saltstates/shared /srv/saltstates/releases as salt@galaxy.digitastuces.com
+ DEBUG [3200f358] Command: /usr/bin/env mkdir -p /srv/saltstates/shared /srv/saltstates/releases
+  INFO [3200f358] Finished in 1.294 seconds with exit status 0 (successful).
+ DEBUG [c45bbeca] Running [ -f /srv/saltstates/current/REVISION ] as salt@galaxy.digitastuces.com
+ DEBUG [c45bbeca] Command: [ -f /srv/saltstates/current/REVISION ]
+ DEBUG [c45bbeca] Finished in 1.526 seconds with exit status 0 (successful).
+ DEBUG [50b5e8a9] Running /usr/bin/env cat /srv/saltstates/current/REVISION 2>/dev/null as salt@galaxy.digitastuces.com
+ DEBUG [50b5e8a9] Command: /usr/bin/env cat /srv/saltstates/current/REVISION 2>/dev/null
+ DEBUG [50b5e8a9] 	5b5032efc14e135db879cb38096380f3893584e8
+ DEBUG [50b5e8a9] Finished in 1.474 seconds with exit status 0 (successful).
+ DEBUG [4dac2925] Running [ -f /srv/saltstates/repo/HEAD ] as salt@galaxy.digitastuces.com
+ DEBUG [4dac2925] Command: [ -f /srv/saltstates/repo/HEAD ]
+ DEBUG [4dac2925] Finished in 1.225 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /srv/saltstates/repo
+ DEBUG [865d18e6] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [865d18e6] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [865d18e6] Finished in 1.595 seconds with exit status 0 (successful).
+  INFO [bd332bb1] Running /usr/bin/env git remote set-url origin git@github.com:digitastuces/saltstates.git as salt@galaxy.digitastuces.com
+ DEBUG [bd332bb1] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env git remote set-url origin git@github.com:digitastuces/saltstates.git )
+  INFO [bd332bb1] Finished in 1.111 seconds with exit status 0 (successful).
+  INFO [eaab070d] Running /usr/bin/env git remote update --prune as salt@galaxy.digitastuces.com
+ DEBUG [eaab070d] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [eaab070d] 	Fetching origin
+ DEBUG [eaab070d] 	From github.com:digitastuces/saltstates
+   5b5032e..6dafd3b  master     -> master
+  INFO [eaab070d] Finished in 5.769 seconds with exit status 0 (successful).
+ DEBUG [c833ed43] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [c833ed43] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [c833ed43] Finished in 1.468 seconds with exit status 0 (successful).
+  INFO [c12eccba] Running /usr/bin/env mkdir -p /srv/saltstates/releases/20221023190345 as salt@galaxy.digitastuces.com
+ DEBUG [c12eccba] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env mkdir -p /srv/saltstates/releases/20221023190345 )
+  INFO [c12eccba] Finished in 2.210 seconds with exit status 0 (successful).
+  INFO [8af42365] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /srv/saltstates/releases/20221023190345 as salt@galaxy.digitastuces.com
+ DEBUG [8af42365] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /srv/saltstates/releases/20221023190345 )
+  INFO [8af42365] Finished in 1.375 seconds with exit status 0 (successful).
+ DEBUG [739df43b] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [739df43b] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [739df43b] Finished in 1.207 seconds with exit status 0 (successful).
+ DEBUG [e1ab0026] Running /usr/bin/env git rev-list --max-count=1 master as salt@galaxy.digitastuces.com
+ DEBUG [e1ab0026] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-7f5573f66114dbf5b67e.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [e1ab0026] 	6dafd3b2ebdeccad3e78e2438dc94367c78b3c7b
+ DEBUG [e1ab0026] Finished in 1.103 seconds with exit status 0 (successful).
+ DEBUG [5e89f5fe] Running if test ! -d /srv/saltstates/releases/20221023190345; then echo "Directory does not exist '/srv/saltstates/releases/20221023190345'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [5e89f5fe] Command: if test ! -d /srv/saltstates/releases/20221023190345; then echo "Directory does not exist '/srv/saltstates/releases/20221023190345'" 1>&2; false; fi
+ DEBUG [5e89f5fe] Finished in 1.005 seconds with exit status 0 (successful).
+  INFO [4f75792f] Running /usr/bin/env echo "6dafd3b2ebdeccad3e78e2438dc94367c78b3c7b" > REVISION as salt@galaxy.digitastuces.com
+ DEBUG [4f75792f] Command: cd /srv/saltstates/releases/20221023190345 && /usr/bin/env echo "6dafd3b2ebdeccad3e78e2438dc94367c78b3c7b" > REVISION
+  INFO [4f75792f] Finished in 1.203 seconds with exit status 0 (successful).
+  INFO [2e6f3915] Running /usr/bin/env ln -s /srv/saltstates/releases/20221023190345 /srv/saltstates/releases/current as salt@galaxy.digitastuces.com
+ DEBUG [2e6f3915] Command: /usr/bin/env ln -s /srv/saltstates/releases/20221023190345 /srv/saltstates/releases/current
+  INFO [2e6f3915] Finished in 1.103 seconds with exit status 0 (successful).
+  INFO [957d1fc5] Running /usr/bin/env mv /srv/saltstates/releases/current /srv/saltstates as salt@galaxy.digitastuces.com
+ DEBUG [957d1fc5] Command: /usr/bin/env mv /srv/saltstates/releases/current /srv/saltstates
+  INFO [957d1fc5] Finished in 1.227 seconds with exit status 0 (successful).
+ DEBUG [4fc13afc] Running if ! sudo -u root whoami > /dev/null; then echo "You cannot switch to user 'root' using sudo, please check the sudoers file" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [4fc13afc] Command: if ! sudo -u root whoami > /dev/null; then echo "You cannot switch to user 'root' using sudo, please check the sudoers file" 1>&2; false; fi
+ DEBUG [4fc13afc] 	sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+ DEBUG [4fc13afc] 	sudo: a password is required
+ DEBUG [4fc13afc] 	You cannot switch to user 'root' using sudo, please check the sudoers file
