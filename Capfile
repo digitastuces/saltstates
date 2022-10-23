@@ -13,7 +13,6 @@ require "capistrano/deploy"
 # install_plugin Capistrano::SCM::Svn
 # or
 require "capistrano/scm/git"
-require 'sshkit/sudo'
 
 install_plugin Capistrano::SCM::Git
 
