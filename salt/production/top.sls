@@ -1,9 +1,9 @@
 production:
     '*':
-        - commons
+        - common
     # Prod minions
     'prod.*':
-        - commons
+        - common
 development:
     '*':
-        - commons
+        - common
