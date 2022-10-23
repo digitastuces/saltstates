@@ -5,7 +5,7 @@
 ###########################################################################################################
 
 include:
-  - apt.transports.https
-  - apt.repositories
+  # - apt.transports.https
+  # - apt.repositories
   - salt.minion
   - .monitoring

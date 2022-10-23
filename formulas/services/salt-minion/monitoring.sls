@@ -1,2 +1,2 @@
 include:
-  - monitoring-plugins.salt
+  # - monitoring-plugins.salt
