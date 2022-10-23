@@ -1,0 +1,19 @@
+---
+{% set team_infra = stack['digitastuces']['team_infra'] %}
+{% set team_dev = stack['digitastuces']['team_dev'] %}
+
+usersandgroups:
+  users:
+    salt:
+      home: /srv/saltstates
+      primary_group: users
+      groups:
+        - exploit
+      ssh_pubkey:
+        sources:
+      {% for user, values in team_infra.items() %}
+          - salt://ssh_keys/{{ user }}.pub
+      {% endfor %}
+      {% for user, values in team_dev.items() %}
+          - salt://ssh_keys/{{ user }}.pub
+      {% endfor %}

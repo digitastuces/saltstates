@@ -1,0 +1,30 @@
+###############################################################################
+# Sudo base pillar
+###############################################################################
+
+sudoers:
+  purge_includedir: true
+  manage_main_config: true
+  defaults:
+    generic:
+      - env_reset
+      - env_keep += SSH_AUTH_SOCK
+      - mail_badpass
+      - secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  groups:
+    sudo:
+      - 'ALL=(ALL:ALL) ALL'
+    admins:
+      - 'ALL=(ALL:ALL) ALL'
+{% if __grains__['manufacturer'] == "HP" or __grains__['manufacturer'] == "Dell Inc." %}
+  included_files:
+    /etc/sudoers.d/02_nagios:
+      users:
+        nagios:
+{% if __grains__['manufacturer'] == "HP" %}
+          - 'ALL=(ALL) NOPASSWD: /usr/bin/cciss_vol_status'
+          - 'ALL=(ALL) NOPASSWD: /usr/sbin/hpacucli'
+{%- elif __grains__['manufacturer'] == "Dell Inc." %}
+          - 'ALL=(ALL) NOPASSWD: /usr/sbin/megacli'
+{% endif %}
+{% endif %}

@@ -1,0 +1,17 @@
+vendor_dir: salt/production/formulas
+
+usersandgroups-formula:
+  source: https://github.com/FraudBuster/usersandgroups-formula.git
+  version: fa83187ca5cdb359f4e5f75ecf74ec5e50d7cbe4
+
+sudoers-formula:
+  source: https://github.com/saltstack-formulas/sudoers-formula.git
+  version: v0.25.0
+
+collectd-formula:
+  source: https://github.com/saltstack-formulas/collectd-formula.git
+  version: v1.2.0
+
+apt-formula:
+  source: https://github.com/saltstack-formulas/apt-formula.git
+  version: v0.10.0

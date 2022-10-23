@@ -1,0 +1,8 @@
+---
+sudoers:
+  included_files:
+    /etc/sudoers.d/01_salt:
+      users:
+        salt:
+          - 'ALL=(ALL) NOPASSWD: /bin/systemctl restart salt-master'
+          - 'ALL=(ALL) NOPASSWD: /bin/systemctl restart salt-api'

@@ -1,0 +1,29 @@
+---
+DAConfig:
+  main_iface: eth0
+  remote_log: true
+  local_machine: false
+  crypt_install: false
+
+  # Enable Vagrant user for Inspec
+  test_mode: false
+
+  # Don't mount /tmpfs if running in Vagrant
+  vagrant: false
+
+  # Enable development mode for unit tests
+  development: false
+
+  # Remote backup, desactivated
+  remote_backup:
+    active: false
+
+  # List of services to install/configure
+  services: []
+
+DAInfos: {}
+
+icinga2:
+  monitored: false
+  oscodename: {{ __grains__['oscodename'] }}
+  osmajorrelease: {{ __grains__['osmajorrelease'] }}

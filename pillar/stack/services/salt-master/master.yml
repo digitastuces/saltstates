@@ -1,0 +1,53 @@
+---
+{% set team_infra = stack['digitastuces']['team_infra'] %}
+{% set team_dev = stack['digitastuces']['team_dev'] %}
+
+salt:
+  master_remove_config: true
+  master:
+    default_include: master.d/*.conf
+    top_file_merging_strategy: merge
+    default_top: prod
+    hash_type: sha512
+    cli_summary: True
+    fileserver_events: true
+    state_output: changes
+    log_level_logfile: info
+    timeout: 120 # 2 minutes
+    keep_jobs: 360 # 15 days
+    worker_threads: 50 # see https://github.com/saltstack/salt/issues/36654
+    sock_pool_size: 32 # see https://github.com/saltstack/salt/issues/53147
+
+    file_roots:
+      prod:
+        - /srv/saltstates/current/pillar/files
+        - /srv/saltstates/current/formulas
+        - /srv/saltstates/current/salt/prod
+        - /srv/saltstates/current/formulas/*
+        - /srv/saltconfig/current
+
+    ext_pillar:
+      - stack:
+        - /srv/saltstates/current/pillar/stack/base.cfg
+        - /srv/saltstates/current/pillar/stack/post_include.cfg
+
+    publisher_acl:
+      salt:
+        - '.*'
+    {% for user in team_infra.keys() %}
+      {{ user }}:
+         - '.*'
+    {% endfor %}
+
+    {% for user in team_dev.keys() %}
+      {{ user }}:
+        - 'pkg.*'
+        - 'test.*'
+        - 'state.*'
+        - 'service.*'
+        - 'cmd.run'
+        - 'saltutil.*'
+        - 'mine.*'
+        - 'grains.*'
+        - 'pillar.*'
+      {% endfor %}

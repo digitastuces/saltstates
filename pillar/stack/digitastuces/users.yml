@@ -1,0 +1,26 @@
+---
+###############################################################################
+# digitastuces users declaration
+# Implementation is done elsewhere
+###############################################################################
+
+digitastuces:
+
+  # infra team
+  team_infra:
+    fcampo:
+      password: $6$DJy6qGXoHCVE0818$TC5invUzMQdz4P0tKxii.KF9GzayomPGVnVbJq2UGybhR3g73VTPAh39zlswV.4l2Cnc8tQb9a7nz.o2dhu99.
+      saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
+      primary_group: users
+      groups:
+        - adm
+        - exploit
+  team_dev:
+    adupont:
+      password: $6$DJy6qGXoHCVE0818$TC5invUzMQdz4P0tKxii.KF9GzayomPGVnVbJq2UGybhR3g73VTPAh39zlswV.4l2Cnc8tQb9a7nz.o2dhu99.
+      saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
+      primary_group: users
+      groups:
+        - adm
+        - exploit
+  no_team: {}
