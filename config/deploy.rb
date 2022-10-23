@@ -46,6 +46,6 @@ set :ssh_options, {:forward_agent => true}
 
 namespace :deploy do
     after :published, :install_formulas
-    #after :finished, :restart_daemon
+    after :finished, :restart_daemon
   end
   
