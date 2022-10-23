@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:digitastuces/saltstates.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/opt/saltstates"
+set :deploy_to, "/srv/saltstates"
 
 set :root_saltstates_dir, '/srv/saltstates/current'
 
