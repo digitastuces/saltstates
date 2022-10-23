@@ -8,4 +8,4 @@ include:
   # - apt.transports.https
   # - apt.repositories
   - salt.minion
-  - .monitoring
+  # - .monitoring
