@@ -1,6 +1,6 @@
 /srv/stuff/substuf:
   file.directory:
-    - user: fred
+    - user: deploy
     - group: users
     - mode: 755
     - makedirs: True
