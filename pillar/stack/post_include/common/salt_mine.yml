@@ -1,0 +1,4 @@
+mine_functions:
+  main_ip:
+    mine_function: grains.get
+    key: 'ip4_interfaces:{{ stack['DAConfig']['main_iface'] }}'

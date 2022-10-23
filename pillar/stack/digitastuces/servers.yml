@@ -1,0 +1,86 @@
+###############################################################################
+# digitastuces servers declaration
+###############################################################################
+
+{% set osmajorrelease = __grains__['osmajorrelease'] %}
+{% set osarch         = __grains__['osarch'] %}
+
+digitastuces:
+  static_hosts:
+    hosts:
+      releases.digitastuces.com: 192.4.4.233
+
+  fake_dns_hosts:
+    - smtp.digitastuces.com
+  ntp:
+    - 0.debian.pool.ntp.org
+    - 1.debian.pool.ntp.org
+    - 2.debian.pool.ntp.org
+    - 3.debian.pool.ntp.org
+
+  servers:
+
+    debian:
+      update: http://ftp.fr.debian.org/debian
+      security: http://security.debian.org
+
+    graphite:
+      # Architecture:
+      #                                   .---------.
+      #                             .------ backend |
+      #                            /      '---------'
+      # .----------.     .-------./
+      # | receiver ------- relay .           ...
+      # '----------'     '-------'\
+      #                            \      .---------.
+      #                             '------ backend |
+      #                                   '---------'
+      #
+      # Receiver and relay are on the same server or data is forwarded from receiver to relay
+      #
+      # Receiver: used to configure monitoring clients
+      receiver:
+        host: carbon.digitastuces.com
+        port: 2003
+      # Relay: receive metrics (from receiver or directly from clients) and dispatch to backend
+      relay:
+        host: 62.4.4.238
+        port: 2003
+      # Backend: metrics final destination
+      backends:
+       # carbon-backend1
+        - host: 62.4.4.246
+          port: 2003
+          spool: false
+          pickle: false
+       # carbon-backend2
+        - host: 62.4.4.247
+          port: 2003
+          spool: false
+          pickle: false
+
+    syslog:
+      proto: tcp
+      host: rlog.digitastuces.com
+      port: 1664
+
+    salt:
+      release: '3004.2'
+      package_version: '3004.2+ds-1'
+      install_packages: True
+      master: salt.digitastuces.com
+
+    reverse_proxy:
+      main_internal: 62.4.4.233
+
+    monitoring:
+      monit_central: 62.4.4.226
+
+    email:
+      main_digitastucesmobi: 62.4.12.223
+
+    ldap:
+      server:
+        host: ldap.digitastuces.com
+        port: 636
+
