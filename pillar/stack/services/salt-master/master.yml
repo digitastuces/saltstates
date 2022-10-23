@@ -7,7 +7,7 @@ salt:
   master:
     default_include: master.d/*.conf
     top_file_merging_strategy: merge
-    default_top: prod
+    default_top: production
     hash_type: sha512
     cli_summary: True
     fileserver_events: true
@@ -19,12 +19,14 @@ salt:
     sock_pool_size: 32 # see https://github.com/saltstack/salt/issues/53147
 
     file_roots:
-      prod:
+      production:
         - /srv/saltstates/current/pillar/files
         - /srv/saltstates/current/formulas
-        - /srv/saltstates/current/salt/prod
+        - /srv/saltstates/current/salt/production
         - /srv/saltstates/current/formulas/*
         - /srv/saltconfig/current
+        - /srv/ext_data/production
+        - /srv/saltstates/current/scripts
 
     ext_pillar:
       - stack:

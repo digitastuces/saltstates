@@ -1,9 +1,9 @@
-prod:
+production:
     '*':
         - commons
     # Prod minions
     'prod.*':
         - commons
-dev:
+development:
     '*':
         - commons
