@@ -1,0 +1,80 @@
+# Logfile created on 2022-10-23 16:13:08 +0200 by logger.rb/v1.4.3
+  INFO ---------------------------------------------------------------------------
+  INFO START 2022-10-23 16:13:08 +0200 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [95a8f209] Running /usr/bin/env mkdir -p /tmp as deploy@galaxy.digitastuces.com
+ DEBUG [95a8f209] Command: /usr/bin/env mkdir -p /tmp
+  INFO [95a8f209] Finished in 4.573 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-75e742a8924b8c71301f.sh 0.0%
+  INFO Uploading /tmp/git-ssh-75e742a8924b8c71301f.sh 100.0%
+  INFO [865d15d5] Running /usr/bin/env chmod 700 /tmp/git-ssh-75e742a8924b8c71301f.sh as deploy@galaxy.digitastuces.com
+ DEBUG [865d15d5] Command: /usr/bin/env chmod 700 /tmp/git-ssh-75e742a8924b8c71301f.sh
+  INFO [865d15d5] Finished in 1.112 seconds with exit status 0 (successful).
+  INFO [d5caba41] Running /usr/bin/env git ls-remote git@github.com:digitastuces/salt_states.git HEAD as deploy@galaxy.digitastuces.com
+ DEBUG [d5caba41] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git ls-remote git@github.com:digitastuces/salt_states.git HEAD )
+ DEBUG [d5caba41] 	2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d	HEAD
+  INFO [d5caba41] Finished in 4.475 seconds with exit status 0 (successful).
+  INFO [41942434] Running /usr/bin/env mkdir -p /opt/salt_states/shared /opt/salt_states/releases as deploy@galaxy.digitastuces.com
+ DEBUG [41942434] Command: /usr/bin/env mkdir -p /opt/salt_states/shared /opt/salt_states/releases
+  INFO [41942434] Finished in 1.168 seconds with exit status 0 (successful).
+ DEBUG [07629751] Running [ -f /opt/salt_states/current/REVISION ] as deploy@galaxy.digitastuces.com
+ DEBUG [07629751] Command: [ -f /opt/salt_states/current/REVISION ]
+ DEBUG [07629751] Finished in 1.103 seconds with exit status 1 (failed).
+ DEBUG [8f41bacd] Running [ -f /opt/salt_states/repo/HEAD ] as deploy@galaxy.digitastuces.com
+ DEBUG [8f41bacd] Command: [ -f /opt/salt_states/repo/HEAD ]
+ DEBUG [8f41bacd] Finished in 0.980 seconds with exit status 1 (failed).
+ DEBUG [4964852c] Running if test ! -d /opt/salt_states; then echo "Directory does not exist '/opt/salt_states'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [4964852c] Command: if test ! -d /opt/salt_states; then echo "Directory does not exist '/opt/salt_states'" 1>&2; false; fi
+ DEBUG [4964852c] Finished in 1.067 seconds with exit status 0 (successful).
+  INFO [1c4bc310] Running /usr/bin/env git clone --mirror git@github.com:digitastuces/salt_states.git /opt/salt_states/repo as deploy@galaxy.digitastuces.com
+ DEBUG [1c4bc310] Command: cd /opt/salt_states && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git clone --mirror git@github.com:digitastuces/salt_states.git /opt/salt_states/repo )
+ DEBUG [1c4bc310] 	Cloning into bare repository '/opt/salt_states/repo'...
+  INFO [1c4bc310] Finished in 5.076 seconds with exit status 0 (successful).
+ DEBUG [e4501e4a] Running if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [e4501e4a] Command: if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi
+ DEBUG [e4501e4a] Finished in 0.981 seconds with exit status 0 (successful).
+  INFO [425bb181] Running /usr/bin/env git remote set-url origin git@github.com:digitastuces/salt_states.git as deploy@galaxy.digitastuces.com
+ DEBUG [425bb181] Command: cd /opt/salt_states/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git remote set-url origin git@github.com:digitastuces/salt_states.git )
+  INFO [425bb181] Finished in 0.984 seconds with exit status 0 (successful).
+  INFO [3a6ce8ba] Running /usr/bin/env git remote update --prune as deploy@galaxy.digitastuces.com
+ DEBUG [3a6ce8ba] Command: cd /opt/salt_states/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [3a6ce8ba] 	Fetching origin
+  INFO [3a6ce8ba] Finished in 4.420 seconds with exit status 0 (successful).
+ DEBUG [487ef7f3] Running if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [487ef7f3] Command: if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi
+ DEBUG [487ef7f3] Finished in 1.015 seconds with exit status 0 (successful).
+  INFO [83b2e4ac] Running /usr/bin/env mkdir -p /opt/salt_states/releases/20221023141323 as deploy@galaxy.digitastuces.com
+ DEBUG [83b2e4ac] Command: cd /opt/salt_states/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env mkdir -p /opt/salt_states/releases/20221023141323 )
+  INFO [83b2e4ac] Finished in 0.887 seconds with exit status 0 (successful).
+  INFO [ad0567ba] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /opt/salt_states/releases/20221023141323 as deploy@galaxy.digitastuces.com
+ DEBUG [ad0567ba] Command: cd /opt/salt_states/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /opt/salt_states/releases/20221023141323 )
+  INFO [ad0567ba] Finished in 1.167 seconds with exit status 0 (successful).
+ DEBUG [7eea0043] Running if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [7eea0043] Command: if test ! -d /opt/salt_states/repo; then echo "Directory does not exist '/opt/salt_states/repo'" 1>&2; false; fi
+ DEBUG [7eea0043] Finished in 1.104 seconds with exit status 0 (successful).
+ DEBUG [ec0a0123] Running /usr/bin/env git rev-list --max-count=1 master as deploy@galaxy.digitastuces.com
+ DEBUG [ec0a0123] Command: cd /opt/salt_states/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-75e742a8924b8c71301f.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [ec0a0123] 	2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d
+ DEBUG [ec0a0123] Finished in 1.105 seconds with exit status 0 (successful).
+ DEBUG [ee66988a] Running if test ! -d /opt/salt_states/releases/20221023141323; then echo "Directory does not exist '/opt/salt_states/releases/20221023141323'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [ee66988a] Command: if test ! -d /opt/salt_states/releases/20221023141323; then echo "Directory does not exist '/opt/salt_states/releases/20221023141323'" 1>&2; false; fi
+ DEBUG [ee66988a] Finished in 1.105 seconds with exit status 0 (successful).
+  INFO [e37e71d9] Running /usr/bin/env echo "2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d" > REVISION as deploy@galaxy.digitastuces.com
+ DEBUG [e37e71d9] Command: cd /opt/salt_states/releases/20221023141323 && /usr/bin/env echo "2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d" > REVISION
+  INFO [e37e71d9] Finished in 1.105 seconds with exit status 0 (successful).
+  INFO [f0e6ac14] Running /usr/bin/env ln -s /opt/salt_states/releases/20221023141323 /opt/salt_states/releases/current as deploy@galaxy.digitastuces.com
+ DEBUG [f0e6ac14] Command: /usr/bin/env ln -s /opt/salt_states/releases/20221023141323 /opt/salt_states/releases/current
+  INFO [f0e6ac14] Finished in 0.980 seconds with exit status 0 (successful).
+  INFO [e163f73a] Running /usr/bin/env mv /opt/salt_states/releases/current /opt/salt_states as deploy@galaxy.digitastuces.com
+ DEBUG [e163f73a] Command: /usr/bin/env mv /opt/salt_states/releases/current /opt/salt_states
+  INFO [e163f73a] Finished in 1.105 seconds with exit status 0 (successful).
+ DEBUG [6be0756f] Running /usr/bin/env ls -x /opt/salt_states/releases as deploy@galaxy.digitastuces.com
+ DEBUG [6be0756f] Command: /usr/bin/env ls -x /opt/salt_states/releases
+ DEBUG [6be0756f] 	20221023141323
+ DEBUG [6be0756f] Finished in 1.104 seconds with exit status 0 (successful).
+ DEBUG [1b23863c] Running if test ! -d /opt/salt_states/releases; then echo "Directory does not exist '/opt/salt_states/releases'" 1>&2; false; fi as deploy@galaxy.digitastuces.com
+ DEBUG [1b23863c] Command: if test ! -d /opt/salt_states/releases; then echo "Directory does not exist '/opt/salt_states/releases'" 1>&2; false; fi
+ DEBUG [1b23863c] Finished in 1.103 seconds with exit status 0 (successful).
+  INFO [efe7ca8f] Running /usr/bin/env echo "Branch master (at 2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d) deployed as release 20221023141323 by adieng" >> /opt/salt_states/revisions.log as deploy@galaxy.digitastuces.com
+ DEBUG [efe7ca8f] Command: cd /opt/salt_states/releases && /usr/bin/env echo "Branch master (at 2fc792f7949a7fd22d8e5e3a2cbbd1255d8f846d) deployed as release 20221023141323 by adieng" >> /opt/salt_states/revisions.log
+  INFO [efe7ca8f] Finished in 1.105 seconds with exit status 0 (successful).
