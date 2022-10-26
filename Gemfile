@@ -21,3 +21,5 @@ end
 gem "test-kitchen"
 gem "kitchen-salt"
 gem 'kitchen-docker'
+gem 'inspec'
+gem 'kitchen-inspec'

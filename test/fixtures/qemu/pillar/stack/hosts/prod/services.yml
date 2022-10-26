@@ -1,0 +1,16 @@
+---
+{%- import_yaml "services.yaml" as services %}
+
+DAConfig:
+  Hoster: OVH
+  fqdn: services.digitastuces.com
+  remote_log: true
+  vagrant: true
+  docker: true
+  test_mode: true
+  # Do not modify services list here, edit `services.yaml` instead
+  services: {{ services }}
+
+DAInfos:
+  Type: System
+

@@ -1,0 +1,11 @@
+---
+name: common
+title: Common Profile
+maintainer: DA Infra Team
+copyright: Digitastuces
+copyright_email: infra@digitastuces.com
+license: All Rights Reserved
+summary: Common Compliance Profile
+version: 0.1.0
+supports:
+  - os-name: debian

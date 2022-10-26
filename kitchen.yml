@@ -1,0 +1,93 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+  privileged: true
+
+# transport:
+#   username: deploy
+#   password: users
+
+provisioner:
+  name: salt_solo
+  log_level: debug
+  salt_install: bootstrap
+  salt_version: latest
+  salt_bootstrap_url: https://bootstrap.saltstack.com
+  salt_bootstrap_options: -X -p git -p curl -p sudo
+
+  # Don't install Chef
+  require_chef: false
+
+  # Configure Salt
+  is_file_root: true
+  salt_minion_config_template: ./test/config/salt-solo.conf
+
+  # Run provisioner only once
+  max_retries: 0
+
+  # Puts current directory in /tmp/kitchen/srv/saltstates
+  # This directory is automatically synchronized
+  salt_file_root: srv/saltstates
+
+  # Define a list of directories to automatically synchronize
+  # with the VM
+  pillars_from_directories:
+    - source: './test/fixtures/qemu'
+      dest: /srv/saltconfig
+
+  salt_copy_filter:
+    - .circleci/
+    - Dockerfile
+    - .drone.yml
+    - .git
+    - .gitignore
+    - .kitchen
+    - .kitchen.yml
+    - Gemfile
+    - Gemfile.lock
+    - requirements.txt
+    - tests/
+    - .travis.yml
+  dependencies:
+    - name: python-bcrypt
+      repo: apt
+      package: python-bcrypt
+
+  pre_salt_command: "/tmp/kitchen/srv/saltstates/bin/install_formulas.sh"
+
+platforms:
+
+  - name: debian-11-3004-1
+    driver:
+      image: saltimages/salt-3004.1-py3:debian-11
+      run_command: /lib/systemd/systemd
+  - name: debian-10-3004-1
+    driver:
+      image: saltimages/salt-3004.1-py3:debian-10
+      run_command: /lib/systemd/systemd
+
+suites:
+  - name: prod-services
+    driver:
+      vm_hostname: services.digitastuces.com
+    provisioner:
+      salt_minion_id: prod.services
+    verifier:
+      inspec_tests:
+        - name: common
+          path: test/integration/common
+        - name: services
+          path: test/integration/services
+      inputs:
+        salt_minion_id: prod.services
+      input_files:
+        - tmp/prod.services.yml
+
+# Use Inspec to run server tests
+# verifier:
+#   name: inspec
+#   reporter:
+#     - progress
+#     - junit:%{suite}_inspec.xml
+#     - json:%{suite}_inspec.json

@@ -1,3 +1,6 @@
+include:
+  - usersandgroups
+  
 /srv/stuff/substuf:
   file.directory:
     - user: deploy

@@ -1,0 +1,17 @@
+---
+monservice:
+  __: merge-first
+  web:
+    hostname: monservice.digitastuces.com
+    port: 81
+
+  user:
+    name: monservice
+    home: /opt/monservice
+
+  mysql:
+    user: monservice
+    password: XXXX-TO-BE-CHANGED-XXXX
+    db: monservice
+    hosts:
+      - localhost

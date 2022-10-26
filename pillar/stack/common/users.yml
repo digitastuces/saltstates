@@ -18,12 +18,3 @@ usersandgroups:
       files:
         home:
           source: salt://users/root
-    backupretrieve:
-      groups:
-        - users
-    nagios:
-      home: /var/lib/nagios
-      shell: /bin/sh
-      system: true
-      groups:
-        - nagios
