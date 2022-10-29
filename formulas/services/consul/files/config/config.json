@@ -1,0 +1,15 @@
+{
+    "server": true,
+    "ports": {
+      "http": -1,
+      "https": 8501
+    },
+    "cert_file": "/var/consul/ssl/consul.digitastuces.com/fullchain.pem",
+    "key_file": "/var/consul/ssl/consul.digitastuces.com/privkey.pem",
+    "bootstrap_expect": 1,
+    "ui": true,
+    "bind_addr": "0.0.0.0",
+    "data_dir": "/var/consul",
+    "enable_debug": false,
+    "log_level": "info"
+  }

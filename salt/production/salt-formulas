@@ -39,3 +39,7 @@ salt-formula:
 packages-formula:
   source: https://github.com/saltstack-formulas/packages-formula.git
   version: v0.16.0
+
+vault-formula:
+  source: https://github.com/saltstack-formulas/vault-formula.git
+  version: v1.3.0
