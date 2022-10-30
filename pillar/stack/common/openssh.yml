@@ -1,0 +1,33 @@
+###############################################################################
+# OpenSSH base pillar
+###############################################################################
+
+openssh:
+  generate_dsa_keys: True
+  generate_rsa_keys: True
+  generate_ed25519_keys: True
+  absent_ecdsa_keys: True
+
+ssh_config:
+  Hosts:
+    '*':
+      GSSAPIAuthentication: no
+      GSSAPIDelegateCredentials: no
+      GSSAPIKeyExchange: no
+      GSSAPITrustDNS: no
+      HashKnownHosts: yes
+
+sshd_config:
+  Port:
+    - '22'
+  PermitRootLogin: 'no'
+  UseDNS: 'no'
+  UsePAM: 'yes'
+  AllowGroups: 'users nagios'
+  PasswordAuthentication: 'no'
+  ChallengeResponseAuthentication: 'no'
+  X11Forwarding: 'no'
+  HostKey:
+    - /etc/ssh/ssh_host_rsa_key
+    - /etc/ssh/ssh_host_dsa_key
+    - /etc/ssh/ssh_host_ed25519_key

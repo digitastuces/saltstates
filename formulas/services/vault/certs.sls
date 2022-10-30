@@ -27,10 +27,10 @@ vault_digitastuces_privkey:
     - mode: 0700
     - makedirs: True
 
-{% if not salt['file.contains']( '/root/.bashrc' , 'VAULT_ADDR') %} 
-vault_bashrc:
-  file.append:
-    - name: /root/.bashrc
-    - text: |
-        export VAULT_ADDR=https://vault.digitastuces.com:8200
-{% endif %}
+# {% if not salt['file.contains']( '/root/.bashrc' , 'VAULT_ADDR') %} 
+# vault_bashrc:
+#   file.append:
+#     - name: /root/.bashrc
+#     - text: |
+#         export VAULT_ADDR=https://vault.digitastuces.com:8200
+# {% endif %}

@@ -1,5 +1,5 @@
 [Unit]
-Description=Consul Template
+Description=Digitastuces Consul Template Service
 Wants=network.target
 After=network.target
 
@@ -7,8 +7,8 @@ After=network.target
 ExecStart=/usr/local/bin/consul-template -config=/etc/consul-template.hcl
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=TERM
-User=root
-Group=root
+User={{user}}
+Group={{user}}
 TimeoutSec=5
 
 [Install]

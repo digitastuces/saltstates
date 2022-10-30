@@ -1,21 +1,21 @@
 consul {
-  address = "consul.digitastuces.com:8501"
+  address = "{{consul_address}}"
   ssl {
     enabled = true
   }
 }
 
 vault {
-  address = "https://vault.digitastuces.com:8200"
-  vault_agent_token_file = "/tmp/vault-token"
+  address = "{{vault_address}}"
+  vault_agent_token_file = "{{vault_agent_token_file}}"
 }
 
 template {
-  source = "/etc/app.yaml.tpl"
-  destination = "/etc/app.yaml"
+  source = "{{template_source}}"
+  destination = "{{template_destination}}"
   error_on_missing_key = true
   wait {
-    min = "2s"
-    max = "10s"
+    min = "{{template_wait_min}}"
+    max = "{{template_wait_max}}"
   }
 }

@@ -1,5 +1,5 @@
 [Unit]
-Description=Consul
+Description=Digitastuces Consul Service
 Wants=network.target
 After=network.target
 
@@ -8,8 +8,8 @@ Environment="GOMAXPROCS=2"
 ExecStart=/usr/local/bin/consul agent -config-file=/etc/consul.json
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=TERM
-User=consul
-Group=consul
+User={{user}}
+Group={{group}}
 
 [Install]
 WantedBy=multi-user.target

@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+consul:
+  # Start Consul agent service and enable it at boot time
+  service: true
+
+  # Set user and group for Consul config files and running service
+  user:
+    name: consul
+  group:
+    name: consul
+
+  version: 1.13.3
+  platform: linux_amd64
+  archive_format: zip
+  hash: SHA256SUMS
+  download_host: releases.hashicorp.com
+
+  config:
+    address: consul.digitastuces.com:8501
+    ssl:
+      enabled: true
+    tls_cert_file: /var/consul/ssl/consul.digitastuces.com/fullchain.pem
+    tls_key_file: /var/consul/ssl/consul.digitastuces.com/privkey.pem
+    bootstrap_expect: 1
+    data_dir: /var/consul
+    enable_debug: true
+    log_level: info
+    bind_addr: 0.0.0.0
+    server: true
+
+    datacenter: eu
+    encrypt: "RIxqpNlOXqtr/j4BgvIMEw=="
+    retry_interval: 15s
+    retry_join:
+      - 1.1.1.1
+      - 2.2.2.2
+    ui_config:
+      enabled: true
+
+  register:
+    - name: Redis
+      checks:
+        - script: /usr/local/share/consul/check_redis.py
+          interval: 10s
+  scripts:
+    - source: salt://files/consul/check_redis.py
+      name: /usr/local/share/consul/check_redis.py
+      context:
+        port: 6379
+
+  vault:
+    config:
+      address: https://vault.digitastuces.com:8200
+      vault_agent_token_file: /tmp/vault-token
+
+consul_template:
+  # Start consul-template daemon and enable it at boot time
+  service: true
+
+  config:
+    consul: consul.digitastuces.com:8501
+    log_level: info
+
+  tmpl:
+    name: example.com
+    source: salt://files/example.com.ctmpl
+    config:
+      template:
+        source: /etc/app.yaml.tpl
+        destination: /etc/app.yaml
+        command: systemctl restart nginx
+    template_error_on_missing_key: true
+    wait:
+      min: 2s
+      max: 10s

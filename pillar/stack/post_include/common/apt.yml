@@ -1,0 +1,16 @@
+###############################################################################
+# Apt lazy pillar
+###############################################################################
+
+{%- set apt_proxy = stack['apt']['proxy'] %}
+
+apt:
+  apt_conf_d:
+    20retry:
+      'Acquire::Retries':
+        "3"
+{% if apt_proxy %}
+    60proxy:
+      'Acquire::http':
+        Proxy: "{{ apt_proxy }}"
+{% endif %}

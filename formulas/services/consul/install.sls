@@ -1,12 +1,19 @@
-{% set consul_version = '1.13.3'  %}
-#1.5.2
+{% set consul_version = salt['pillar.get']('consul:version') %}
+{% set download_host = salt['pillar.get']('consul:download_host') %}
+{% set platform = salt['pillar.get']('consul:platform') %}
+{% set source_hash = salt['pillar.get']('consul:hash') %}
+{% set archive_format = salt['pillar.get']('consul:archive_format') %}
+{% set user = salt['pillar.get']('consul:user:name') %}
+{% set group = salt['pillar.get']('consul:group:name') %}
+{% set consul_directory = salt['pillar.get']('consul:config:data_dir') %}
+
 
 consul:
   archive.extracted:
     - name: /tmp/consul
     - enforce_toplevel: False
-    - source: https://releases.hashicorp.com/consul/{{consul_version}}/consul_{{consul_version}}_linux_amd64.zip
-    - source_hash: https://releases.hashicorp.com/consul/{{consul_version}}/consul_{{consul_version}}_SHA256SUMS
+    - source: https://{{download_host}}/consul/{{consul_version}}/consul_{{consul_version}}_{{platform}}.{{archive_format}}
+    - source_hash: https://{{download_host}}/consul/{{consul_version}}/consul_{{consul_version}}_{{source_hash}}
     - unless: test -f /usr/local/bin/consul
   file.managed:
     - name: /usr/local/bin/consul
@@ -16,18 +23,18 @@ consul:
     - require:
       - archive: consul
   group.present:
-    - name: consul
+    - name: {{group}}
   user.present:
-    - name: consul
+    - name: {{user}}
     - fullname: Hashicorp Consul
     - shell: /usr/bin/nologin
     - groups:
-        - consul
+        - {{group}}
         - users
 
 consul_data_dir:
   file.directory:
-    - name: /var/consul
-    - user: consul
-    - group: consul
+    - name: {{consul_directory}}
+    - user: {{user}}
+    - group: {{group}}
     - mode: 0750

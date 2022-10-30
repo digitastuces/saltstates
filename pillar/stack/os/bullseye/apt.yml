@@ -1,0 +1,42 @@
+###############################################################################
+# APT configuration for Debian Bullseye
+###############################################################################
+
+{% set osmajorrelease = __grains__['osmajorrelease'] %}
+{% set osarch         = __grains__['osarch'] %}
+{% set oscodename     = __grains__['oscodename'] %}
+
+{% set update_server    = stack['digitastuces']['servers']['debian']['update'] %}
+{% set security_server  = stack['digitastuces']['servers']['debian']['security'] %}
+
+{% set saltstack_server = 'https://repo.saltproject.io/py3/debian/' ~ '11' ~ '/' ~ osarch ~
+    '/archive/' ~ stack['digitastuces']['servers']['salt']['release'] %}
+
+apt:
+  repositories:
+    {{ oscodename }}:
+      distro: {{ oscodename }}
+      url: {{ update_server }}
+      comps: [main, contrib, non-free]
+      type: [binary]
+    {{ oscodename }}-updates:
+      distro: {{ oscodename }}-updates
+      url: {{ update_server }}
+      comps: [main, contrib, non-free]
+      type: [binary]
+    {{ oscodename }}-backports:
+      distro: {{ oscodename }}-backports
+      url: {{ update_server }}
+      comps: [main, contrib, non-free]
+      type: [binary]
+    {{ oscodename }}-security:
+      distro: {{ oscodename }}-security
+      url: {{ security_server }}
+      comps: [main, contrib, non-free]
+      type: [binary]
+    {{ oscodename }}-saltstack:
+      distro: 'bullseye'
+      url: {{ saltstack_server }}
+      comps: [main]
+      type: [binary]
+      key_url: {{ saltstack_server }}/SALTSTACK-GPG-KEY.pub

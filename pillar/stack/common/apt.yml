@@ -1,0 +1,12 @@
+###############################################################################
+# APT base pillar
+###############################################################################
+
+apt:
+  remove_sources_list: true
+  clean_sources_list_d: true
+
+  remove_preferences: true
+  clean_preferences_d: true
+
+  remove_apt_conf: true

@@ -1,0 +1,25 @@
+###############################################################################
+# Debian packages lazy pillar
+###############################################################################
+
+{%- set hoster = stack['DAInfos']['Hoster'] %}
+{%- set services = stack['DAConfig']['services'] %}
+{%- set test = stack['DAConfig']['test_mode'] %}
+{%- set pkg_list = [] %}
+
+# Definition of base packages to add
+{% if not test %}
+{% do pkg_list.append('apticron') %}
+{% endif %}
+
+{% if hoster == 'Customer' %}
+{% do pkg_list.append('redsocks') %}
+{% endif %}
+
+
+# Don't install apticron in test mode as it
+# randomly generates apt errors (cannot get apt lock)
+packages:
+  pkgs: 
+    wanted:
+      {{pkg_list}}

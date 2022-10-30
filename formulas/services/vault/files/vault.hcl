@@ -5,24 +5,29 @@
 # Storing Vault data in Consul
 
 storage "consul" {
-  address = "consul.digitastuces.com:8501"
-  path = "vault/"
-  scheme = "https"
+  address = "{{ consul_address }}"
+  path = "{{ consul_path }}"
+  scheme = "{{ consul_scheme }}"
+}
+
+service_registration "consul" {
+  address  = "{{ consul_address }}"
 }
 
 listener "tcp" {
-  address = "vault.digitastuces.com:8200"
-  tls_disable = "false"
-  tls_cert_file = "/var/vault/ssl/vault.digitastuces.com/fullchain.pem"
-  tls_key_file = "/var/vault/ssl/vault.digitastuces.com/privkey.pem"
+  address = "{{ vault_address }}"
+  tls_disable = "{{ tls_disable }}"
+  tls_cert_file = "{{ tls_cert_file }}"
+  tls_key_file = "{{ tls_key_file }}"
 }
 
-api_addr = "https://vault.digitastuces.com:8200"
-cluster_addr = "https://vault.digitastuces.com:8201"
+api_addr = "{{ api_addr }}"
+cluster_addr = "{{ cluster_addr }}"
 
-max_lease_ttl = "10h"
-default_lease_ttl = "10h"
+max_lease_ttl = "{{ max_lease_ttl }}"
+default_lease_ttl = "{{ default_lease_ttl }}"
 disable_mlock = true
 
 ui = true
-log_level = "Debug"
+log_level = "{{ log_level }}"
+plugin_directory = "{{ plugin_directory }}"
