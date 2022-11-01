@@ -1,0 +1,52 @@
+###############################################################################
+# Logrotate base pillar
+###############################################################################
+
+logrotate:
+  default_config:
+    weekly: True
+    rotate: 104
+    create: True
+    compress: True
+
+  jobs:
+    # In vanilla Debian, following rules are stored in syslog-ng file
+    syslog:
+      path:
+        - /var/log/syslog
+      config:
+        - daily
+        - rotate 730
+        - missingok
+        - notifempty
+        - delaycompress
+        - compress
+        - postrotate
+        -   invoke-rc.d syslog-ng reload > /dev/null
+        - endscript
+    syslog-ng:
+      path:
+        - /var/log/mail.info
+        - /var/log/mail.warn
+        - /var/log/mail.err
+        - /var/log/mail.log
+        - /var/log/daemon.log
+        - /var/log/kern.log
+        - /var/log/auth.log
+        - /var/log/user.log
+        - /var/log/lpr.log
+        - /var/log/cron.log
+        - /var/log/debug
+        - /var/log/messages
+        - /var/log/error
+      config:
+        - weekly
+        - missingok
+        - notifempty
+        - compress
+        - delaycompress
+        - sharedscripts
+        - postrotate
+        -   invoke-rc.d syslog-ng reload > /dev/null
+        - endscript
+

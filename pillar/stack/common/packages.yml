@@ -1,0 +1,82 @@
+###############################################################################
+# Packages base pillar
+###############################################################################
+{% set oscodename = __grains__['oscodename'] %}
+
+packages:
+  pkgs:
+    wanted:
+      - aptitude
+      - bash-completion
+      - bzip2
+      - vim
+      - nano
+      - telnet 
+      - ftp
+      - ldap-utils
+      - unzip
+      - tree
+      - tcpdump
+      - screen
+      - rsync
+      - net-tools
+      - ncdu
+      - git
+      - curl
+{% if oscodename == 'stretch' %}
+      - python-bcrypt
+      - python-pip
+      - python-psutil
+{% endif %}
+      - python3-openssl
+      - python3-bcrypt
+      - python3-pip
+      - python3-psutil
+      - rng-tools
+      - rsync
+      - screen
+      - sqlite3
+      - strace
+      - sudo
+      - sysstat
+      - tcpdump
+      - tofrodos
+      - tree
+      - unrar-free
+      - unzip
+      - vim
+      - virt-what
+      - zsh
+
+    unwanted:
+      - consolekit
+      - dbus-x11
+      - gconf2-common
+      - gtk-update-icon-cache
+      - libargtable2-0
+      - libgtk-3-common
+      - libgtk2.0-0
+      - libgtk2.0-bin
+      - libgtk2.0-common
+      - libsmbios2
+      - mailutils
+      - openipmi
+      - pinentry-gtk2
+      - python-libsmbios
+      - shorewall
+      - shorewall-core
+      - smbios-utils
+      - srvadmin-deng
+      - srvadmin-hapi
+      - srvadmin-idracadm7
+      - srvadmin-idracadm8
+      - srvadmin-omilcore
+      - x11-utils
+
+  configs:
+    - vimrc:
+        file: vimrc
+        dest: /etc/vim/vimrc
+    - vimrc_local:
+        file: vimrc.local
+        dest: /etc/vim/vimrc.local

@@ -4,6 +4,7 @@
 consul:
   # Start Consul agent service and enable it at boot time
   service: true
+  hostname: consul.digitastuces.com
 
   # Set user and group for Consul config files and running service
   user:
@@ -18,25 +19,26 @@ consul:
   download_host: releases.hashicorp.com
 
   config:
-    server: true
-    bind_addr: 0.0.0.0
-
+    address: consul.digitastuces.com:8501
+    ssl:
+      enabled: true
+    tls_cert_file: /var/consul/ssl/consul.digitastuces.com/fullchain.pem
+    tls_key_file: /var/consul/ssl/consul.digitastuces.com/privkey.pem
+    bootstrap_expect: 1
+    data_dir: /var/consul
     enable_debug: true
+    log_level: info
+    bind_addr: 0.0.0.0
+    server: true
 
     datacenter: eu
-
     encrypt: "RIxqpNlOXqtr/j4BgvIMEw=="
-
-    bootstrap_expect: 3
     retry_interval: 15s
     retry_join:
       - 1.1.1.1
       - 2.2.2.2
-
     ui_config:
       enabled: true
-    log_level: info
-    data_dir: /var/consul
 
   register:
     - name: Redis
@@ -49,19 +51,28 @@ consul:
       context:
         port: 6379
 
+  vault:
+    config:
+      address: https://vault.digitastuces.com:8200
+      vault_agent_token_file: /tmp/vault-token
+
 consul_template:
   # Start consul-template daemon and enable it at boot time
   service: true
 
   config:
-    consul: 127.0.0.1:8500
+    consul: consul.digitastuces.com:8501
     log_level: info
 
   tmpl:
-    - name: example.com
-      source: salt://files/example.com.ctmpl
-      config:
-        template:
-          source: /etc/consul-template/tmpl-source/example.com.ctmpl
-          destination: /etc/nginx/sites-enabled/example.com
-          command: systemctl restart nginx
+    name: example.com
+    source: salt://files/example.com.ctmpl
+    config:
+      template:
+        source: /etc/app.yaml.tpl
+        destination: /etc/app.yaml
+        command: systemctl restart nginx
+    template_error_on_missing_key: true
+    wait:
+      min: 2s
+      max: 10s

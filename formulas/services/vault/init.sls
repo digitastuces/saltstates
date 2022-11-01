@@ -5,8 +5,11 @@
 ###########################################################################################################
 
 include:
-  - .hosts
+  - usersandgroups
+  #- .hosts
   - services.consul
   - .install
   - .certs
   - .configure
+  - services.nginx
+  #- logrotate.jobs

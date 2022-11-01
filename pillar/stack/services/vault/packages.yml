@@ -1,0 +1,27 @@
+###############################################################################
+# Packages Vault pillar
+###############################################################################
+
+packages:
+  pkgs:
+    unwanted:
+      - __: remove
+      - javascript-common
+    wanted:
+      - __: merge-last
+      - aptitude
+      - bzip2
+      - vim
+      - nano
+      - telnet 
+      - ftp
+      - ldap-utils
+      - unzip
+      - tree
+      - tcpdump
+      - screen
+      - rsync
+      - net-tools
+      - ncdu
+      - git
+      - curl

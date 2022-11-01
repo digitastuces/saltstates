@@ -22,7 +22,7 @@ logrotate-formula:
 
 nginx-formula:
   source: https://github.com/saltstack-formulas/nginx-formula.git
-  version: v2.4.0
+  version: v2.8.1
 
 openvpn-formula:
   source: https://github.com/saltstack-formulas/openvpn-formula.git

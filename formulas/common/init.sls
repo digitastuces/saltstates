@@ -5,6 +5,11 @@
 include:
 # check and clean
   - usersandgroups
+  - packages.pkgs
+  - sudoers
+  #- sudoers.included
+  - apt.repositories
+  - logrotate.install
 
   # install services
   {% for service in services %}
