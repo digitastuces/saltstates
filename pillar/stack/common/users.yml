@@ -8,6 +8,9 @@ usersandgroups:
     shell: /bin/bash
     ssh_pubkey_dir: salt://ssh_keys/
     purge_absent_users_files: True
+    # you can define options for users here
+    user_options:
+      allow_gid_change: True
 
   absent_users:
     - axsala
