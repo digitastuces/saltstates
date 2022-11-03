@@ -24,13 +24,14 @@ salt:
         - /srv/saltstates/current/formulas
         - /srv/saltstates/current/salt/production
         - /srv/saltstates/current/formulas/*
+        - /srv/saltstates/current/salt/production/formulas/salt-formula/*   
         - /srv/saltconfig/current
         - /srv/ext_data/production
         - /srv/saltstates/current/scripts
-
     ext_pillar:
       - stack:
         - /srv/saltstates/current/pillar/stack/base.cfg
+        - /srv/saltconfig/current/pillar/stack/stack.cfg
         - /srv/saltstates/current/pillar/stack/post_include.cfg
 
     publisher_acl:

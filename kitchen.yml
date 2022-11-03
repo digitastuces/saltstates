@@ -58,10 +58,14 @@ provisioner:
 
 platforms:
 
-  - name: debian-11-3004-1
+  - name: debian-11-3004-2
     driver:
-      image: saltimages/salt-3004.1-py3:debian-11
+      image: saltimages/salt-3004.2-py3:debian-11
       run_command: /lib/systemd/systemd
+      provision_command:
+        - apt update -y 
+        - apt install vim openssh-server curl lsb-release -y
+        - apt-get install -y dbus
       network:
         - ["forwarded_port", {guest: 80, host: 8200, auto_correct: true}]
         - ["forwarded_port", {guest: 443, host: 8201}]

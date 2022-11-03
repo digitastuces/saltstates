@@ -1,0 +1,65 @@
+---
+# Salt-API configuration:
+# * process itself
+# * authentication
+# * users' permissions (ACL)
+
+{# users defined groups #}
+{%- set user_groups = ['team_infra', 'team_dev'] %}
+
+salt:
+  master:
+    # salt-api configuration
+    rest_cherrypy:
+      port: 15847
+      disable_ssl: false
+      host: 0.0.0.0
+      ssl_crt: /etc/ssl/certs/digitastuces_wildcard.pem
+      ssl_key: /etc/ssl/private/digitastuces_wildcard.key
+
+    # salt-api authentication using hashed passwords in a file
+    external_auth:
+      # configuration
+      file:
+        ^filename: '/etc/salt/eauth_users.txt'
+        ^filetype: text
+        ^hashtype: sha256
+
+      # ACL
+      {%- if stack['digitastuces']['team_infra'] %}
+        {%- for user in stack['digitastuces']['team_infra'].keys()  %}
+        {{ user }}:
+          - '.*'
+        {%- endfor %}
+      {%- endif %}
+
+      {%- if stack['digitastuces']['team_dev'] %}
+        {%- for user in stack['digitastuces']['team_dev'].keys() %}
+        {{ user }}:
+          - 'pkg.*'
+          - 'test.*'
+          - 'state.*'
+          - 'service.*'
+          - 'cmd.run'
+          - 'saltutil.*'
+          - 'mine.*'
+          - 'grains.*'
+          - 'pillar.*'
+        {%- endfor %}
+      {%- endif %}
+
+
+  # declaration of users in the hashed password file
+  eauth:
+    users:
+      {%- for user_group in user_groups %}
+        {%- if stack['digitastuces'][user_group] %}
+          {%- for user, data in stack['digitastuces'][user_group].items() %}
+            {%- if data.get('saltapi_hash', False) %}
+      {{ user }}: {{ data.get('saltapi_hash') }}
+            {%- endif %}
+          {%- endfor %}
+        {%- endif %}
+      {% endfor %}
+
+      tycoon: 4c79c96a29a981a4ce124626a67150aefd9f00ebfbf90e3166fc3e62f8d259d7

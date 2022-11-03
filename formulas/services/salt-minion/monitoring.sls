@@ -1,2 +1,0 @@
-include:
-  # - monitoring-plugins.salt

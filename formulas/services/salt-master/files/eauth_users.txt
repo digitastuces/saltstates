@@ -1,0 +1,3 @@
+{% for user, password in users.items() -%}
+{{ user }}:{{ password }}
+{% endfor -%}

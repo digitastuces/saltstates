@@ -8,7 +8,7 @@ usersandgroups:
       home: /srv/saltstates
       primary_group: users
       groups:
-        - exploit
+        - users
       ssh_pubkey:
         sources:
       {% for user, values in team_infra.items() %}
