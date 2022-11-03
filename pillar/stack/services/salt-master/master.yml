@@ -23,10 +23,11 @@ salt:
         - /srv/saltstates/current/pillar/files
         - /srv/saltstates/current/formulas
         - /srv/saltstates/current/salt/production
-        - /srv/saltstates/current/formulas/*
+        - /srv/saltstates/current/salt/production/formulas/*
         - /srv/saltconfig/current
+        - /srv/ext_data/prod
         - /srv/ext_data/production
-        - /srv/saltstates/current/scripts
+
     ext_pillar:
       - stack:
         - /srv/saltstates/current/pillar/stack/base.cfg
