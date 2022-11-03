@@ -32,6 +32,8 @@ vault_user:
     - groups:
         - {{ user }}
         - users
+    - allow_uid_change: True  
+    - allow_gid_change: True
 
 vault_data_dir:
   file.directory:

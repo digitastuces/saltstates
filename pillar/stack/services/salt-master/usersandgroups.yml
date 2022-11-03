@@ -8,6 +8,7 @@ usersandgroups:
     # you can define options for users here
     user_options:
       allow_gid_change: True
+      allow_uid_change: True
   users:
     salt:
       home: /srv/saltstates
