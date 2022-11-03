@@ -13,6 +13,7 @@ usersandgroups:
     salt:
       home: /srv/saltstates
       primary_group: users
+      allow_gid_change: true
       groups:
         - users
       ssh_pubkey:
