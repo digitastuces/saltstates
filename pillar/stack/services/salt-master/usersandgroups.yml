@@ -3,6 +3,11 @@
 {% set team_dev = stack['digitastuces']['team_dev'] %}
 
 usersandgroups:
+  # you can also define additional global configuration
+  config:
+    # you can define options for users here
+    user_options:
+      allow_gid_change: True
   users:
     salt:
       home: /srv/saltstates
