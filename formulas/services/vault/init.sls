@@ -5,8 +5,8 @@
 ###########################################################################################################
 
 include:
-  #- usersandgroups
-  - .hosts
+  - users
+  #- .hosts
   - services.consul
   - .install
   - .certs
