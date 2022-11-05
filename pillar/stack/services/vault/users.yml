@@ -1,0 +1,12 @@
+---
+users:
+  vault:
+    fullname: Vault Digitastuces
+    home: /var/vault
+    groups:
+      - users
+  consul:
+    fullname: Consul Digitastuces
+    home: /var/consul
+    groups:
+      - users

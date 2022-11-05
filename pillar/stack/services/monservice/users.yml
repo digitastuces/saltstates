@@ -1,24 +1,24 @@
----
-{% set user = stack['monservice']['user']['name'] %}
-{% set home = stack['monservice']['user']['home']  %}
+# ---
+# {% set user = stack['monservice']['user']['name'] %}
+# {% set home = stack['monservice']['user']['home']  %}
 
-usersandgroups:
-  users:
-    {{ user }}:
-      home: {{ home }}
-      shell: /bin/bash
-      groups:
-        - users
-        - monservice
-      ssh_pubkey:
-        manage: False
-        sources:
-{% for user, values in stack['digitastuces']['team_infra'].items() %}
-          - salt://ssh_keys/{{ user }}.pub
-{% endfor %}
-    # Add TeamDev users in monservice group
-    {% for user, values in stack['digitastuces']['team_dev'].items() %}
-    {% do values['groups'].append('monservice') %}
-    {{ user }}:
-      {{ values }}
-    {% endfor %}
+# usersandgroups:
+#   users:
+#     {{ user }}:
+#       home: {{ home }}
+#       shell: /bin/bash
+#       groups:
+#         - users
+#         - monservice
+#       ssh_pubkey:
+#         manage: False
+#         sources:
+# {% for user, values in stack['digitastuces']['team_infra'].items() %}
+#           - salt://ssh_keys/{{ user }}.pub
+# {% endfor %}
+#     # Add TeamDev users in monservice group
+#     {% for user, values in stack['digitastuces']['team_dev'].items() %}
+#     {% do values['groups'].append('monservice') %}
+#     {{ user }}:
+#       {{ values }}
+#     {% endfor %}

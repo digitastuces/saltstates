@@ -4,9 +4,9 @@ apt-formula:
   source: https://github.com/saltstack-formulas/apt-formula.git
   version: v0.10.0
 
-usersandgroups-formula:
-  source: https://github.com/FraudBuster/usersandgroups-formula.git
-  version: fa83187ca5cdb359f4e5f75ecf74ec5e50d7cbe4
+users-formula:
+  source: https://github.com/saltstack-formulas/users-formula.git
+  version: v0.48.8
 
 sudoers-formula:
   source: https://github.com/saltstack-formulas/sudoers-formula.git

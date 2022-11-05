@@ -4,7 +4,7 @@
 
 include:
 # check and clean
-  - usersandgroups
+  - users
   - packages.pkgs
   - sudoers
   #- sudoers.included

@@ -7,6 +7,7 @@ hosts:
     - ip:
       - 127.0.0.1
       - 139.99.131.14
+      - 172.17.0.2
       - 172.17.0.3
     - names:
       - consul.digitastuces.com

@@ -3,15 +3,15 @@
 # Users implementation for prod.* minions
 ###############################################################################
 
-usersandgroups:
-  users:
-    # Add team_infra users
-    {% for user, values in stack['digitastuces']['team_infra'].items() %}
-    {{ user }}:
-      {{ values }}
-    {% endfor %}
-    # Add team_dev users
-    {% for user, values in stack['digitastuces']['team_dev'].items() %}
-    {{ user }}:
-      {{ values }}
-    {% endfor %}
+# usersandgroups:
+#   users:
+#     # Add team_infra users
+#     {% for user, values in stack['digitastuces']['team_infra'].items() %}
+#     {{ user }}:
+#       {{ values }}
+#     {% endfor %}
+#     # Add team_dev users
+#     {% for user, values in stack['digitastuces']['team_dev'].items() %}
+#     {{ user }}:
+#       {{ values }}
+#     {% endfor %}

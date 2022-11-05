@@ -1,6 +1,6 @@
 
 include:
-  - usersandgroups
+  - users
   - apt.transports.https
   - apt.repositories
   - salt.master

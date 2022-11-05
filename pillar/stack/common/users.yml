@@ -1,23 +1,126 @@
 ---
-###############################################################################
-# Users base pillar
-###############################################################################
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+{% set team_infra = stack['digitastuces']['team_infra'] %}
+{% set team_dev = stack['digitastuces']['team_dev'] %}
 
-usersandgroups:
-  config:
+{%- set user_groups = ['team_infra', 'team_dev'] %}
+users-formula:
+  use_vim_formula: true
+  lookup:
+    root_group: root
+
+# group initialization
+groups:
+{%- if stack['digitastuces']['team_infra'] %}     
+  team_infra:
+    gid: 4242
+    system: false
+    addusers:
+      - root
+    delusers:
+      - toor
+{%- endif %}
+{%- if stack['digitastuces']['team_dev'] %}     
+  team_dev:
+    state: present
+    gid: 1500
+    system: false
+{%- endif %}
+  absents:
+    absent: true
+  ssl-cert:
+    system: true
+    members:
+      - www-data
+      #- openldap
+  no_team: {}
+
+users:
+{%- for user_group in user_groups %}
+  {%- if stack['digitastuces'][user_group] %}
+    {%- for user, data in stack['digitastuces'][user_group].items() %}
+      {% if stack['digitastuces'][user_group][user]['absent'] == false %}
+  {{user}}:
+    fullname: {{ data.get('fullname') }}
+    password: {{ data.get('password') }}
+    saltapi_hash: {{ data.get('saltapi_hash') }}
+    enforce_password: true
+    empty_password: false
+    hash_password: false
+    system: true
+    home: {{ data.get('home') }}
+    homedir_owner: {{ user }}
+    homedir_group: users
+    user_dir_mode: 750
+    createhome: true
+    #roomnumber: "A-1"
+    workphone: "{{ data.get('workphone') }}"
+    homephone: "{{ data.get('homephone') }}"
+    manage_vimrc: false
+    allow_gid_change: true
+    allow_uid_change: true    
+    manage_bashrc: false
+    manage_profile: false
+    #expire: 16426
+    sudoonly: false
+    sudouser: {{ data.get('sudouser') }}
+    sudo_rules:
+    {%- for s_rule in stack['digitastuces'][user_group][user]['sudo_rules'] %}
+      - {{s_rule}}
+    {%- endfor %}
+    sudo_defaults:
+      - '!requiretty'
+    # enable polkitadmin to make user an AdminIdentity for polkit
+    polkitadmin: true
     shell: /bin/bash
-    ssh_pubkey_dir: salt://ssh_keys/
-    purge_absent_users_files: True
-    # you can define options for users here
-    user_options:
-      allow_gid_change: True
-      allow_uid_change: True
-  absent_users:
-    - axsala
-  users:
-    root:
-      ssh_pubkey:
-        manage: false
-      files:
-        home:
-          source: salt://users/root
+    remove_groups: false
+    # prime_group:
+    #   name: users
+    #   gid: 1501
+    groups:
+    {%- for _group in stack['digitastuces'][user_group][user]['groups'] %}
+      - {{_group}}
+    {%- endfor %}
+    optional_groups:
+      - some_groups_that_might
+      - not_exist_on_all_minions
+    ssh_key_type: rsa
+    ssh_keys:
+      #privkey: salt://path_to_PRIVATEKEY
+      pubkey: salt://ssh_keys/{{ user }}.pub
+    ssh_auth_sources:
+      - salt://ssh_keys/{{ user }}.pub
+    unique: false
+    uid: {{ data.get('uid') }}
+      {% else %}
+  ## Absents users
+  {{user}}:
+    absent: true
+    purge: true
+    force: true
+      {% endif %}
+    {%- endfor %}
+  {%- endif %}
+{% endfor %}
+
+  ## Minimal required pillar values
+  www-data:
+    fullname: www-data User
+    groups:
+      - users
+  openldap:
+    fullname: openldap User
+    home: /var/lib/openldap
+    groups:
+      - users
+  salt:
+    fullname: Salt Digitastuces
+    home: /srv/saltstates
+    groups:
+      - users
+  deploy:
+    fullname: Deploy Digitastuces
+    home: /var/lib/deploy
+    groups:
+      - users
