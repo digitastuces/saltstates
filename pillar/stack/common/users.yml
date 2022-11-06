@@ -59,7 +59,7 @@ users:
     homephone: "{{ data.get('homephone') }}"
     manage_vimrc: false
     allow_gid_change: true
-    allow_uid_change: true
+    allow_uid_change: True
     manage_bashrc: false
     manage_profile: false
     #expire: 16426
@@ -93,6 +93,7 @@ users:
       - salt://ssh_keys/{{ user }}.pub
     unique: false
     uid: {{ data.get('uid') }}
+    gid: {{ data.get('uid') }}
       {% else %}
   ## Absents users
   {{user}}:
