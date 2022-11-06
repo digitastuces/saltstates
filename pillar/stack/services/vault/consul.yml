@@ -19,7 +19,7 @@ consul:
   download_host: releases.hashicorp.com
 
   config:
-    address: consul.digitastuces.com:8501
+    address: 127.0.0.1:8501
     ssl:
       enabled: true
     tls_cert_file: /var/consul/ssl/consul.digitastuces.com/fullchain.pem
@@ -29,7 +29,7 @@ consul:
     consul_logs_directory: /var/log/consul/
     enable_debug: true
     log_level: info
-    bind_addr: 193.70.87.42
+    bind_addr: 0.0.0.0
     server: true
 
     datacenter: eu
@@ -54,7 +54,7 @@ consul:
 
   vault:
     config:
-      address: https://vault.digitastuces.com:8200
+      address: https://127.0.0.1:8200
       vault_agent_token_file: /tmp/vault-token
 
 consul_template:
@@ -62,7 +62,7 @@ consul_template:
   service: true
 
   config:
-    consul: consul.digitastuces.com:8501
+    consul: 127.0.0.1:8501
     log_level: info
 
   tmpl:
