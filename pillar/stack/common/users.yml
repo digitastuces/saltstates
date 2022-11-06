@@ -111,12 +111,14 @@ users:
       - users
   openldap:
     fullname: openldap User
-    home: /var/lib/openldap
+    home: /var/lib/ldap
     groups:
       - users
+      - openldap
+      - sudo
   salt:
     fullname: Salt Digitastuces
-    home: /srv/saltstates
+    home: /var/lib/salt
     groups:
       - users
   deploy:
