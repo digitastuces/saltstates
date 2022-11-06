@@ -30,3 +30,5 @@ alias mv='mv -i'
 alias reboot="echo Please use the full path command, but are you really sure about that ?"
 alias shutdown="echo Please use the full path command, but are you really sure about that ?"
 alias halt="echo Please use the full path command, but are you really sure about that ?"
+
+export VAULT_ADDR=https://vault.digitastuces.com:8200
