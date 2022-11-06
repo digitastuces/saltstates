@@ -59,7 +59,7 @@ users:
     homephone: "{{ data.get('homephone') }}"
     manage_vimrc: false
     allow_gid_change: true
-    allow_uid_change: true    
+    allow_uid_change: true
     manage_bashrc: false
     manage_profile: false
     #expire: 16426
