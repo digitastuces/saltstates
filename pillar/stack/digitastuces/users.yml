@@ -15,13 +15,13 @@ digitastuces:
       saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
       primary_group: users
       sudouser: true
-      uid: 1001
+      uid: 5010
       prime_group:
         name: users
         gid: 1501
       home: /home/adieng
-      workphone: "33 6 19 21 43 77"
-      homephone: "33 6 19 21 43 77"
+      workphone: "33 6 1921 4377"
+      homephone: "33 6 1921 4377"
       email: adama.dieng@digitastuces.com      
       groups:
         - adm
