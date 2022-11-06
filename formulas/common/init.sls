@@ -10,6 +10,7 @@ include:
   #- sudoers.included
   - apt.repositories
   - logrotate.install
+  - services.salt-minion
 
   # install services
   {% for service in services %}
