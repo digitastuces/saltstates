@@ -92,7 +92,7 @@ users:
     ssh_auth_sources:
       - salt://ssh_keys/{{ user }}.pub
     unique: false
-    uid: {{ data.get('uid') }}
+    #uid: {{ data.get('uid') }}
       {% else %}
   ## Absents users
   {{user}}:
@@ -124,3 +124,21 @@ users:
     home: /var/lib/deploy
     groups:
       - users
+      - root
+      - sudo
+      - deploy
+  jenkins:
+    fullname: jenkins Digitastuces
+    home: /var/lib/jenkins
+    groups:
+      - users
+      - sudo
+      - docker
+  root:
+    fullname: Root Digitastuces
+    home: /root
+    password: $6$DJy6qGXoHCVE0818$TC5invUzMQdz4P0tKxii.KF9GzayomPGVnVbJq2UGybhR3g73VTPAh39zlswV.4l2Cnc8tQb9a7nz.o2dhu99.
+    groups:
+      - users
+      - root
+      - sudo

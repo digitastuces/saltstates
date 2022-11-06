@@ -40,7 +40,7 @@ digitastuces:
       saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
       primary_group: users
       sudouser: false
-      uid: 1002
+      uid: 5009
       prime_group:
         name: users
         gid: 1502
@@ -63,7 +63,7 @@ digitastuces:
       saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
       primary_group: users
       sudouser: false
-      uid: 1003
+      uid: 5002
       prime_group:
         name: users
         gid: 1503
