@@ -26,6 +26,7 @@ consul:
     tls_key_file: /var/consul/ssl/consul.digitastuces.com/privkey.pem
     bootstrap_expect: 1
     data_dir: /var/consul
+    consul_logs_directory: /var/log/consul/
     enable_debug: true
     log_level: info
     bind_addr: 0.0.0.0

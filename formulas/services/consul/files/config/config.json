@@ -11,5 +11,8 @@
     "bind_addr": "{{bind_addr}}",
     "data_dir": "{{data_dir}}",
     "enable_debug": true,
-    "log_level": "{{log_level}}"
+    "log_level": "{{log_level}}",
+    "addresses": {
+      "http": "0.0.0.0"
+    }
   }

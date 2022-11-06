@@ -6,6 +6,7 @@
 {% set user = salt['pillar.get']('consul:user:name') %}
 {% set group = salt['pillar.get']('consul:group:name') %}
 {% set consul_directory = salt['pillar.get']('consul:config:data_dir') %}
+{% set consul_logs_directory = salt['pillar.get']('consul:config:consul_logs_directory') %}
 
 
 consul:
@@ -35,6 +36,13 @@ consul:
 consul_data_dir:
   file.directory:
     - name: {{consul_directory}}
+    - user: {{user}}
+    - group: {{group}}
+    - mode: 0750
+
+consul_logs_dir:
+  file.directory:
+    - name: {{consul_logs_directory}}
     - user: {{user}}
     - group: {{group}}
     - mode: 0750
