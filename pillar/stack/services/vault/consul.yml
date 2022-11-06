@@ -29,7 +29,7 @@ consul:
     consul_logs_directory: /var/log/consul/
     enable_debug: true
     log_level: info
-    bind_addr: 0.0.0.0
+    bind_addr: 193.70.87.42
     server: true
 
     datacenter: eu
