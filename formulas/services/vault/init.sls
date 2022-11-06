@@ -6,7 +6,7 @@
 
 include:
   - users
-  #- .hosts
+  - .hosts
   - services.consul
   - .install
   - .certs
