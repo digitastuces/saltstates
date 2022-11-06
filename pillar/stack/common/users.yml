@@ -92,7 +92,7 @@ users:
     ssh_auth_sources:
       - salt://ssh_keys/{{ user }}.pub
     unique: false
-    #uid: {{ data.get('uid') }}
+    uid: {{ data.get('uid') }}
       {% else %}
   ## Absents users
   {{user}}:
