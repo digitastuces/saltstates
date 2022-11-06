@@ -6,7 +6,7 @@ consul_digitastuces_cert:
     - source: salt://services/certs/files/cert1.pem
     - user: consul
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
 consul_digitastuces_fullchain:
@@ -15,7 +15,7 @@ consul_digitastuces_fullchain:
     - source: salt://services/certs/files/fullchain1.pem
     - user: consul
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
 consul_digitastuces_privkey:
@@ -24,7 +24,7 @@ consul_digitastuces_privkey:
     - source: salt://services/certs/files/privkey1.pem
     - user: consul
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
 {% if not salt['file.contains']( '/root/.bashrc' , 'CONSUL_HTTP_ADDR') %} 

@@ -1,5 +1,6 @@
 {% set user = salt['pillar.get']('consul:user:name') %}
 {% set group = salt['pillar.get']('consul:group:name') %}
+{% set bind_addr = salt['pillar.get']('consul:config:bind_addr') %}
 
 consul_config:
   file.managed:
@@ -26,6 +27,7 @@ consul_service:
     - context:
         user: {{user}}
         group: {{group}}
+        bind_addr: {{bind_addr}}
   service.running:
     - name: consul
     - enable: True

@@ -17,12 +17,12 @@ vault:
   config:
     storage:
       consul:
-        address: "127.0.0.1:8501"
+        address: "consul.digitastuces.com:8501"
         path: "vault/"
         scheme: "https"
     listener:
       tcp:
-        address: "127.0.0.1:8200"
+        address: "vault.digitastuces.com:8200"
         tls_disable: "false"
         tls_cert_file: /var/vault/ssl/vault.digitastuces.com/fullchain.pem
         tls_key_file: /var/vault/ssl/vault.digitastuces.com/privkey.pem
@@ -31,8 +31,8 @@ vault:
     disable_mlock: true
     ui: true
     log_level: Debug
-    cluster_addr: https://127.0.0.1:8201
-    api_addr: https://127.0.0.1:8200
+    cluster_addr: https://vault.digitastuces.com:8201
+    api_addr: https://vault.digitastuces.com:8200
     config_file: /etc/vault.hcl
     vault_directory: /var/vault
     vault_logs_directory: /var/vault/logs/

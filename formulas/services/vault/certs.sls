@@ -6,7 +6,7 @@ vault_digitastuces_cert:
     - source: salt://services/certs/files/cert1.pem
     - user: vault
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
 vault_digitastuces_fullchain:
@@ -15,7 +15,7 @@ vault_digitastuces_fullchain:
     - source: salt://services/certs/files/fullchain1.pem
     - user: vault
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
 vault_digitastuces_privkey:
@@ -24,13 +24,13 @@ vault_digitastuces_privkey:
     - source: salt://services/certs/files/privkey1.pem
     - user: vault
     - group: users
-    - mode: 0700
+    - mode: 0755
     - makedirs: True
 
-# {% if not salt['file.contains']( '/root/.bashrc' , 'VAULT_ADDR') %} 
-# vault_bashrc:
-#   file.append:
-#     - name: /root/.bashrc
-#     - text: |
-#         export VAULT_ADDR=https://vault.digitastuces.com:8200
-# {% endif %}
+{% if not salt['file.contains']( '/root/.bashrc' , 'VAULT_ADDR') %} 
+vault_bashrc:
+  file.append:
+    - name: /root/.bashrc
+    - text: |
+        export VAULT_ADDR=https://vault.digitastuces.com:8200
+{% endif %}
