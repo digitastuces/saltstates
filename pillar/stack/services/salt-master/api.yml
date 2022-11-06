@@ -14,8 +14,8 @@ salt:
       port: 15847
       disable_ssl: false
       host: 0.0.0.0
-      ssl_crt: /etc/ssl/certs/digitastuces_wildcard.pem
-      ssl_key: /etc/ssl/private/digitastuces_wildcard.key
+      ssl_crt: /var/lib/salt/ssl/salt.digitastuces.com/fullchain.pem
+      ssl_key: /var/lib/salt/ssl/salt.digitastuces.com/privkey.pem
 
     # salt-api authentication using hashed passwords in a file
     external_auth:
