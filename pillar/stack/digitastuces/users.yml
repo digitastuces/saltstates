@@ -25,10 +25,7 @@ digitastuces:
       email: adama.dieng@digitastuces.com      
       groups:
         - adm
-        - exploit
         - users
-        - team_infra
-        - sudo
       sudo_rules:
         - ALL=(ALL) NOPASSWD:ALL
         #- ALL=(root) /usr/bin/find
