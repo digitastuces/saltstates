@@ -8,21 +8,21 @@ digitastuces:
 
   # infra team
   team_infra:
-    adama:
+    adieng:
       absent: false
       fullname: Adama DIENG
       password: $6$DJy6qGXoHCVE0818$TC5invUzMQdz4P0tKxii.KF9GzayomPGVnVbJq2UGybhR3g73VTPAh39zlswV.4l2Cnc8tQb9a7nz.o2dhu99.
       saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
       primary_group: users
-      sudouser: true
-      uid: 1001
+      sudouser: false
+      uid: 5010
       prime_group:
         name: users
-        gid: 1501
-      home: /home/adama
-      workphone: "33 6 1921 4377"
-      homephone: "33 6 1921 4377"
-      email: adama.dieng@digitastuces.com      
+        gid: 1504
+      home: /home/adieng
+      email: adama.dieng@digitastuces.com  
+      workphone: "33 6 19 21 43 7"
+      homephone: "33 9 21 4 77"
       groups:
         - adm
         - users
