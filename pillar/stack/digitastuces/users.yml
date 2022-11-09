@@ -8,7 +8,7 @@ digitastuces:
 
   # infra team
   team_infra:
-    adieng:
+    adama:
       absent: false
       fullname: Adama DIENG
       password: $6$DJy6qGXoHCVE0818$TC5invUzMQdz4P0tKxii.KF9GzayomPGVnVbJq2UGybhR3g73VTPAh39zlswV.4l2Cnc8tQb9a7nz.o2dhu99.
@@ -19,7 +19,7 @@ digitastuces:
       prime_group:
         name: users
         gid: 1501
-      home: /home/adieng
+      home: /home/adama
       workphone: "33 6 1921 4377"
       homephone: "33 6 1921 4377"
       email: adama.dieng@digitastuces.com      
