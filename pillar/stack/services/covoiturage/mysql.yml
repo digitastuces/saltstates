@@ -1,0 +1,38 @@
+---
+{%- set mysql = stack['covoiturage']['mysql'] %}
+
+mysql:
+  server:
+    mysqld:
+      wait_timeout: 1800
+    #root_user: 'root'
+    root_password: eK584BUQ8eJF
+  database:
+    - {{ mysql.db }}
+  user:
+    {{ mysql.user }}:
+      password: {{ mysql.password }}
+      hosts:
+        - 'localhost'
+        - '%'
+      revoke_first: true
+      databases:
+        - database: {{ mysql.db }}
+          grants: [
+            'SELECT',
+            'INSERT',
+            'UPDATE',
+            'DELETE',
+            'DROP',
+            'ALTER',
+            'CREATE',
+            'CREATE VIEW',
+            'SHOW VIEW',
+            'INDEX',
+            'CREATE TEMPORARY TABLES',
+            'LOCK TABLES'
+        ]
+        - database: '*'
+          grants: [
+            'PROCESS'
+          ]

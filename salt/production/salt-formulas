@@ -30,7 +30,7 @@ openvpn-formula:
 
 redis-formula:
   source: https://github.com/saltstack-formulas/redis-formula.git
-  version: v0.26.2
+  version: v0.28.1
 
 salt-formula:
   source: https://github.com/saltstack-formulas/salt-formula.git
@@ -43,3 +43,7 @@ packages-formula:
 vault-formula:
   source: https://github.com/saltstack-formulas/vault-formula.git
   version: v1.3.0
+
+mysql-formula:
+  source: https://github.com/saltstack-formulas/mysql-formula.git
+  version: v0.56.3

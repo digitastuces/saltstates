@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+mysql:
+  global:
+    client-server:
+      default_character_set: utf8
+
+  clients:
+    mysql:
+      default_character_set: utf8
+    mysqldump:
+      default_character_set: utf8
+
+  library:
+    client:
+      default_character_set: utf8
+
+  server:
+    # Use this account for database admin (defaults to root)
+    #root_user: 'admin'
+    root_password: eK584BUQ8eJF
+    mysqld:
+    # root_password_hash: '*13883BDDBE566ECECC0501CDE9B293303116521A'
+    user: mysql
+    # If you only manage the dbs and users and the server is on
+    # another host IP 123.123.123.123
+    host: 127.0.0.1
+    # my.cnf sections changes
+    mysqld:
+      # you can use either underscore or hyphen in param names
+      bind-address: 0.0.0.0
+      log_bin: /var/log/mysql/mysql-bin.log
+      datadir: /var/lib/mysql
+      port: 3307
+      binlog_do_db: foo
+      auto_increment_increment: 5
+      # innodb_buffer_pool_size: 6G
+      binlog-ignore-db:
+        - mysql
+        - sys
+        - information_schema
+        - performance_schema
+      explicit_defaults_for_timestamp: 1   # strict ansi supports sane defaults
+    mysql:
+      # my.cnf param that not require value
+      no-auto-rehash: noarg_present
+
+  admin_user:
+    admin_user_name: 'admin'
+    admin_user_password: 'eK584BUQ8eJF'
+    grants:
+      - 'all privileges'
+
+  salt_user:
+    salt_user_name: 'salt'
+    salt_user_password: 'someotherpass'
+    grants:
+      - 'all privileges'
+
+  # Manage config
+  config:
+    file: ~/.my.cnf
+    sections:
+      client:
+        port: 33306
+        socket: /var/lib/mysql-socket/mysql.sock
+      mysqld_safe:
+        plugin-dir: '~/mysql/plugins'
+      mysqld:
+        user: myself
+        port: 33306
+        datadir: ~/mysql/datadir
+    apparmor:
+      dir: /etc/apparmor.d/local
+      file: usr.sbin.mysqld
+
+    # Remove a user
+    obsoleteuser:
+      host: localhost
+      # defaults to true
+      present: false
+
+  # Override any names defined in map.jinja
+  # serverpkg: mysql-server
+  # clientpkg: mysql-client
+  # service: mysql
+  # pythonpkg: python-mysqldb
+  # devpkg: mysql-devel
+  # debconf_utils: debconf-utils
+
+  # Install MySQL headers
+  dev:
+    # Install dev package - defaults to false
+    install: false
+

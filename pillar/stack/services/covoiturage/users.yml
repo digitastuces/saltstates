@@ -1,0 +1,7 @@
+---
+users:
+  {{ stack['covoiturage']['user']['name'] }}:
+    fullname: Covoiturage Digitastuces
+    home: {{ stack['covoiturage']['user']['home'] }}
+    groups:
+      - users

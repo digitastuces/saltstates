@@ -78,7 +78,7 @@ platforms:
 suites:
   - name: prod-services
     driver:
-      hostname: vault.digitastuces.com
+      hostname: manifest.digitastuces.com
     provisioner:
       salt_minion_id: prod.services
     verifier:

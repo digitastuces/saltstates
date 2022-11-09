@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+firewall:
+  install: true
+  enabled: true
+  strict: true
+  ipv6: true
+  services:
+    ssh:
+      block_nomatch: true
+      ips_allow:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+    http:
+      block_nomatch: false
+      protos:
+        - udp
+        - tcp
+    snmp:
+      block_nomatch: false
+      protos:
+        - udp
+        - tcp
+      interfaces:
+        - eth0
+
+  services_ipv6:
+    ssh:
+      block_nomatch: false
+      ips_allow:
+        - 2a02:2028:773:d01:10a5:f34f:e7ff:f55b/64
+        - 2a02:2028:773:d01:1814:28ef:e91b:70b8/64
+    http:
+      block_nomatch: false
+      protos:
+        - udp
+        - tcp
+    snmp:
+      block_nomatch: false
+      protos:
+        - udp
+        - tcp
+      interfaces:
+        - eth0
+
+  whitelist:
+    networks:
+      ips_allow:
+        - 10.0.0.0/8
+
+  whitelist_ipv6:
+    networks:
+      ips_allow:
+        - 2a02:2028:773:d01:1814:28ef:e91b:70b8/64
+
+  # yamllint disable rule:line-length
+  # Support nat (ipv4 only)
+  # iptables -t nat -A POSTROUTING -o eth0 -s 192.168.18.0/24 -d 10.20.0.2 -j MASQUERADE
+  # iptables -t nat -A POSTROUTING -o eth0 -s 192.168.18.0/24 -d 172.31.0.2 -j MASQUERADE
+  # yamllint enable rule:line-length
+  nat:
+    eth0:
+      rules:
+        '192.168.18.0/24':
+          - 10.20.0.2
+
+### Using the tables.sls state
+
+# In this example we iterate over tables (filter, nat, mangle) and
+# adds the desired entries
+firewall:
+  install: true
+  enabled: true
+  strict: true
+
+  # To use tables, leave services undefined and set this to true
+  use_tables: true
+
+  filter:
+    INPUT:
+      rules:
+        test_ssh_rule:
+          protocol: tcp
+          dport: 22
+          jump: ACCEPT
+        test_rule:
+          source: 172.22.172.0/24
+          protocol: tcp
+          match: multiport
+          dports: 80,443
+          jump: ACCEPT
+    CUSTOM_CHAIN:
+      rules:
+        some_custom_rule:
+          source: 192.168.12.0/23
+          protocol: tcp
+          dport: 2222
+          jump: REJECT
+
+  nat:
+    POSTROUTING:
+      rules:
+        masquerade:
+          source: '192.168.18.0/24'
+          destination: '10.20.0.2'
+          jump: MASQUERADE
