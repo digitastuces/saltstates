@@ -56,3 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 .kitchen/
 .kitchen.local.yml
+log/capistrano.log

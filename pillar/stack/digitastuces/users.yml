@@ -15,7 +15,7 @@ digitastuces:
       saltapi_hash: 22b836e800e9839dc18f02a079291c21538d83640769c533998c4e94db125d12
       primary_group: users
       sudouser: false
-      uid: 5010
+      uid: 5011
       prime_group:
         name: users
         gid: 1504
@@ -24,7 +24,6 @@ digitastuces:
       workphone: "33 6 19 21 43 7"
       homephone: "33 9 21 4 77"
       groups:
-        - adm
         - users
       sudo_rules:
         - ALL=(ALL) NOPASSWD:ALL
