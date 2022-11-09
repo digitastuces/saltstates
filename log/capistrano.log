@@ -3019,3 +3019,120 @@ INFO 2022/11/09 13:23:55 [salt-formula] Fetching git::https://github.com/saltsta
   INFO [815e6864] Running sudo systemctl restart salt-api as salt@galaxy.digitastuces.com
  DEBUG [815e6864] Command: sudo systemctl restart salt-api
   INFO [815e6864] Finished in 1.338 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2022-11-09 14:19:08 +0100 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [91255a0a] Running /usr/bin/env mkdir -p /tmp as salt@galaxy.digitastuces.com
+ DEBUG [91255a0a] Command: /usr/bin/env mkdir -p /tmp
+  INFO [91255a0a] Finished in 4.116 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-79ae2f5f6a6a7001b289.sh 0.0%
+  INFO Uploading /tmp/git-ssh-79ae2f5f6a6a7001b289.sh 100.0%
+  INFO [13887498] Running /usr/bin/env chmod 700 /tmp/git-ssh-79ae2f5f6a6a7001b289.sh as salt@galaxy.digitastuces.com
+ DEBUG [13887498] Command: /usr/bin/env chmod 700 /tmp/git-ssh-79ae2f5f6a6a7001b289.sh
+  INFO [13887498] Finished in 1.097 seconds with exit status 0 (successful).
+  INFO [64335070] Running /usr/bin/env git ls-remote git@github.com:digitastuces/saltstates.git HEAD as salt@galaxy.digitastuces.com
+ DEBUG [64335070] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env git ls-remote git@github.com:digitastuces/saltstates.git HEAD )
+ DEBUG [64335070] 	51784d400dfa2c3ab04cc37c7d97aa05087e409a	HEAD
+  INFO [64335070] Finished in 4.424 seconds with exit status 0 (successful).
+  INFO [1a71d85c] Running /usr/bin/env mkdir -p /srv/saltstates/shared /srv/saltstates/releases as salt@galaxy.digitastuces.com
+ DEBUG [1a71d85c] Command: /usr/bin/env mkdir -p /srv/saltstates/shared /srv/saltstates/releases
+  INFO [1a71d85c] Finished in 1.103 seconds with exit status 0 (successful).
+ DEBUG [7f9b0c34] Running [ -f /srv/saltstates/current/REVISION ] as salt@galaxy.digitastuces.com
+ DEBUG [7f9b0c34] Command: [ -f /srv/saltstates/current/REVISION ]
+ DEBUG [7f9b0c34] Finished in 1.025 seconds with exit status 0 (successful).
+ DEBUG [4a4341f0] Running /usr/bin/env cat /srv/saltstates/current/REVISION 2>/dev/null as salt@galaxy.digitastuces.com
+ DEBUG [4a4341f0] Command: /usr/bin/env cat /srv/saltstates/current/REVISION 2>/dev/null
+ DEBUG [4a4341f0] 	2a26148ca5d2a9cedbdbacfccf4960553932113e
+ DEBUG [4a4341f0] Finished in 1.067 seconds with exit status 0 (successful).
+ DEBUG [f956052a] Running [ -f /srv/saltstates/repo/HEAD ] as salt@galaxy.digitastuces.com
+ DEBUG [f956052a] Command: [ -f /srv/saltstates/repo/HEAD ]
+ DEBUG [f956052a] Finished in 1.100 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /srv/saltstates/repo
+ DEBUG [fbed79c4] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [fbed79c4] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [fbed79c4] Finished in 1.100 seconds with exit status 0 (successful).
+  INFO [1a8f541f] Running /usr/bin/env git remote set-url origin git@github.com:digitastuces/saltstates.git as salt@galaxy.digitastuces.com
+ DEBUG [1a8f541f] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env git remote set-url origin git@github.com:digitastuces/saltstates.git )
+  INFO [1a8f541f] Finished in 1.095 seconds with exit status 0 (successful).
+  INFO [fefacae8] Running /usr/bin/env git remote update --prune as salt@galaxy.digitastuces.com
+ DEBUG [fefacae8] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [fefacae8] 	Fetching origin
+ DEBUG [fefacae8] 	From github.com:digitastuces/saltstates
+   2a26148..51784d4  master     -> master
+  INFO [fefacae8] Finished in 4.666 seconds with exit status 0 (successful).
+ DEBUG [b00346e2] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [b00346e2] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [b00346e2] Finished in 1.106 seconds with exit status 0 (successful).
+  INFO [c4e1abee] Running /usr/bin/env mkdir -p /srv/saltstates/releases/20221109131923 as salt@galaxy.digitastuces.com
+ DEBUG [c4e1abee] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env mkdir -p /srv/saltstates/releases/20221109131923 )
+  INFO [c4e1abee] Finished in 0.981 seconds with exit status 0 (successful).
+  INFO [2a1b9477] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /srv/saltstates/releases/20221109131923 as salt@galaxy.digitastuces.com
+ DEBUG [2a1b9477] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /srv/saltstates/releases/20221109131923 )
+  INFO [2a1b9477] Finished in 0.988 seconds with exit status 0 (successful).
+ DEBUG [617ee8bf] Running if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [617ee8bf] Command: if test ! -d /srv/saltstates/repo; then echo "Directory does not exist '/srv/saltstates/repo'" 1>&2; false; fi
+ DEBUG [617ee8bf] Finished in 1.097 seconds with exit status 0 (successful).
+ DEBUG [8b8918bf] Running /usr/bin/env git rev-list --max-count=1 master as salt@galaxy.digitastuces.com
+ DEBUG [8b8918bf] Command: cd /srv/saltstates/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-79ae2f5f6a6a7001b289.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [8b8918bf] 	51784d400dfa2c3ab04cc37c7d97aa05087e409a
+ DEBUG [8b8918bf] Finished in 1.106 seconds with exit status 0 (successful).
+ DEBUG [754a0c52] Running if test ! -d /srv/saltstates/releases/20221109131923; then echo "Directory does not exist '/srv/saltstates/releases/20221109131923'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [754a0c52] Command: if test ! -d /srv/saltstates/releases/20221109131923; then echo "Directory does not exist '/srv/saltstates/releases/20221109131923'" 1>&2; false; fi
+ DEBUG [754a0c52] Finished in 1.042 seconds with exit status 0 (successful).
+  INFO [67432cc9] Running /usr/bin/env echo "51784d400dfa2c3ab04cc37c7d97aa05087e409a" > REVISION as salt@galaxy.digitastuces.com
+ DEBUG [67432cc9] Command: cd /srv/saltstates/releases/20221109131923 && /usr/bin/env echo "51784d400dfa2c3ab04cc37c7d97aa05087e409a" > REVISION
+  INFO [67432cc9] Finished in 1.043 seconds with exit status 0 (successful).
+  INFO [4653af7c] Running /usr/bin/env ln -s /srv/saltstates/releases/20221109131923 /srv/saltstates/releases/current as salt@galaxy.digitastuces.com
+ DEBUG [4653af7c] Command: /usr/bin/env ln -s /srv/saltstates/releases/20221109131923 /srv/saltstates/releases/current
+  INFO [4653af7c] Finished in 1.102 seconds with exit status 0 (successful).
+  INFO [da6e810c] Running /usr/bin/env mv /srv/saltstates/releases/current /srv/saltstates as salt@galaxy.digitastuces.com
+ DEBUG [da6e810c] Command: /usr/bin/env mv /srv/saltstates/releases/current /srv/saltstates
+  INFO [da6e810c] Finished in 1.105 seconds with exit status 0 (successful).
+  INFO [b8bbda04] Running /usr/bin/env /srv/saltstates/current/bin/install_formulas.sh as salt@galaxy.digitastuces.com
+ DEBUG [b8bbda04] Command: /usr/bin/env /srv/saltstates/current/bin/install_formulas.sh
+ DEBUG [b8bbda04] 	
+### Installing salt formulas for saltenv: production
+
+ DEBUG [b8bbda04] 	WARN 2022/11/09 14:19:42 Removing all modules in salt/production/formulas
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [vault-formula] Fetching git::https://github.com/saltstack-formulas/vault-formula.git?ref=v1.3.0
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [nginx-formula] Fetching git::https://github.com/saltstack-formulas/nginx-formula.git?ref=v2.8.1
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [apt-formula] Fetching git::https://github.com/saltstack-formulas/apt-formula.git?ref=v0.10.0
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [logrotate-formula] Fetching git::https://github.com/saltstack-formulas/logrotate-formula.git?ref=v0.14.0
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [redis-formula] Fetching git::https://github.com/saltstack-formulas/redis-formula.git?ref=v0.28.1
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [users-formula] Fetching git::https://github.com/saltstack-formulas/users-formula.git?ref=v0.48.8
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [salt-formula] Fetching git::https://github.com/saltstack-formulas/salt-formula.git?ref=v1.10.1
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [sudoers-formula] Fetching git::https://github.com/saltstack-formulas/sudoers-formula.git?ref=v0.25.0
+ DEBUG [b8bbda04] 	INFO 2022/11/09 14:19:42 [openvpn-formula] Fetching git::https://github.com/saltstack-formulas/openvpn-formula.git?ref=v0.16.3
+INFO 2022/11/09 14:19:42 [mysql-formula] Fetching git::https://github.com/saltstack-formulas/mysql-formula.git?ref=v0.56.3
+INFO 2022/11/09 14:19:42 [collectd-formula] Fetching git::https://github.com/saltstack-formulas/collectd-formula.git?ref=v1.2.0
+INFO 2022/11/09 14:19:42 [packages-formula] Fetching git::https://github.com/saltstack-formulas/packages-formula.git?ref=v0.16.0
+ DEBUG [b8bbda04] 	
+  INFO [b8bbda04] Finished in 3.212 seconds with exit status 0 (successful).
+ DEBUG [6801a35a] Running /usr/bin/env ls -x /srv/saltstates/releases as salt@galaxy.digitastuces.com
+ DEBUG [6801a35a] Command: /usr/bin/env ls -x /srv/saltstates/releases
+ DEBUG [6801a35a] 	20221106225516	20221109114344	20221109115936	20221109121322	20221109122338
+20221109131923
+ DEBUG [6801a35a] Finished in 1.086 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on galaxy.digitastuces.com
+ DEBUG [c957d95d] Running [ -d /srv/saltstates/current ] as salt@galaxy.digitastuces.com
+ DEBUG [c957d95d] Command: [ -d /srv/saltstates/current ]
+ DEBUG [c957d95d] Finished in 1.103 seconds with exit status 0 (successful).
+ DEBUG [ba460e3e] Running /usr/bin/env readlink /srv/saltstates/current as salt@galaxy.digitastuces.com
+ DEBUG [ba460e3e] Command: /usr/bin/env readlink /srv/saltstates/current
+ DEBUG [ba460e3e] 	/srv/saltstates/releases/20221109131923
+ DEBUG [ba460e3e] Finished in 0.850 seconds with exit status 0 (successful).
+  INFO [15a21956] Running /usr/bin/env rm -rf /srv/saltstates/releases/20221106225516 as salt@galaxy.digitastuces.com
+ DEBUG [15a21956] Command: /usr/bin/env rm -rf /srv/saltstates/releases/20221106225516
+  INFO [15a21956] Finished in 1.107 seconds with exit status 0 (successful).
+ DEBUG [fe0fe796] Running if test ! -d /srv/saltstates/releases; then echo "Directory does not exist '/srv/saltstates/releases'" 1>&2; false; fi as salt@galaxy.digitastuces.com
+ DEBUG [fe0fe796] Command: if test ! -d /srv/saltstates/releases; then echo "Directory does not exist '/srv/saltstates/releases'" 1>&2; false; fi
+ DEBUG [fe0fe796] Finished in 0.994 seconds with exit status 0 (successful).
+  INFO [2f919d31] Running /usr/bin/env echo "Branch master (at 51784d400dfa2c3ab04cc37c7d97aa05087e409a) deployed as release 20221109131923 by adieng" >> /srv/saltstates/revisions.log as salt@galaxy.digitastuces.com
+ DEBUG [2f919d31] Command: cd /srv/saltstates/releases && /usr/bin/env echo "Branch master (at 51784d400dfa2c3ab04cc37c7d97aa05087e409a) deployed as release 20221109131923 by adieng" >> /srv/saltstates/revisions.log
+  INFO [2f919d31] Finished in 1.093 seconds with exit status 0 (successful).
+  INFO [1e770353] Running sudo systemctl restart salt-master as salt@galaxy.digitastuces.com
+ DEBUG [1e770353] Command: sudo systemctl restart salt-master
+  INFO [1e770353] Finished in 6.680 seconds with exit status 0 (successful).
+  INFO [9bc9c513] Running sudo systemctl restart salt-api as salt@galaxy.digitastuces.com
+ DEBUG [9bc9c513] Command: sudo systemctl restart salt-api
+  INFO [9bc9c513] Finished in 1.438 seconds with exit status 0 (successful).
