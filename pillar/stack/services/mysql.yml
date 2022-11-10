@@ -25,7 +25,7 @@ mysql:
     user: mysql
     # If you only manage the dbs and users and the server is on
     # another host IP 123.123.123.123
-    host: 127.0.0.1
+    host: 0.0.0.0
     # my.cnf sections changes
     mysqld:
       # you can use either underscore or hyphen in param names
