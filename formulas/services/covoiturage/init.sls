@@ -6,6 +6,3 @@
 
 include:
   - users
-  - .mysql
-  - .redis
-  - iptables
