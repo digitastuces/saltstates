@@ -1,0 +1,9 @@
+---
+digitastuces:
+  services_whitelist:
+    ssh:
+      - all
+      - production
+    http:
+      - all
+      - production

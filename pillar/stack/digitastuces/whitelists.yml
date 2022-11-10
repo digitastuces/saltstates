@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+
 firewall:
+  enabled: True
+  install: True
+  strict: True
+  ipv6: True
   services:
     ssh:
       block_nomatch: true
@@ -22,7 +27,6 @@ firewall:
         - tcp
       interfaces:
         - eth0
-
   whitelist:
     networks:
       ips_allow:
@@ -30,7 +34,6 @@ firewall:
         - 172.17.0.0/24
         - 139.99.131.14/32
         - 193.70.87.42/32
-
   services_ipv6:
     ssh:
       block_nomatch: false
@@ -49,20 +52,15 @@ firewall:
         - tcp
       interfaces:
         - eth0
-
   whitelist_ipv6:
     networks:
       ips_allow:
         - 2a02:2028:773:d01:1814:28ef:e91b:70b8/64
-
-  # yamllint disable rule:line-length
-  # Support nat (ipv4 only)
   # iptables -t nat -A POSTROUTING -o eth0 -s 192.168.18.0/24 -d 10.20.0.2 -j MASQUERADE
   # iptables -t nat -A POSTROUTING -o eth0 -s 192.168.18.0/24 -d 172.31.0.2 -j MASQUERADE
-  # yamllint enable rule:line-length
   nat:
     eth0:
       rules:
         '192.168.18.0/24':
           - 10.20.0.2
-
+    

@@ -64,7 +64,7 @@ platforms:
       run_command: /lib/systemd/systemd
       provision_command:
         - apt update -y 
-        - apt install vim openssh-server curl lsb-release -y
+        - apt install vim openssh-server curl git lsb-release -y
         - apt-get install -y dbus
       network:
         - ["forwarded_port", {guest: 80, host: 8200, auto_correct: true}]

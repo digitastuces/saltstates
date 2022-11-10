@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+
+firewall:
+  enabled: True
+  install: True
+  strict: True
+  ipv6: True
+  services:
+    ssh:
+      block_nomatch: true
+      ips_allow:
+        - __: merge-last
+        - 192.168.12.38/32
+    mysql:
+      block_nomatch: true
+      ips_allow:
+        - 172.17.0.0/24
+        - 139.99.131.14/32
+        - 193.70.87.42/32
+        - 10.0.0.0/8

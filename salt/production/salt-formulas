@@ -47,3 +47,7 @@ vault-formula:
 mysql-formula:
   source: https://github.com/saltstack-formulas/mysql-formula.git
   version: v0.56.3
+
+iptables-formula:
+  source: https://github.com/saltstack-formulas/iptables-formula.git
+  version: v0.17.5
