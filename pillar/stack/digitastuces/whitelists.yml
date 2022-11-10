@@ -28,6 +28,14 @@ firewall:
         - tcp
       interfaces:
         - eth0
+        - ens3
+    mysql:
+      block_nomatch: false
+      protos:
+        - udp
+        - tcp
+      interfaces:
+        - ens3
   whitelist:
     networks:
       ips_allow:
