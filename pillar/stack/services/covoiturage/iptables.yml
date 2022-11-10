@@ -1,23 +1,75 @@
-# -*- coding: utf-8 -*-
-# vim: ft=yaml
----
-
+# In this example we iterate over tables (filter, nat, mangle) and
+# adds the desired entries
 firewall:
-  enabled: True
-  install: True
-  strict: True
-  ipv6: True
-  services:
-    ssh:
-      block_nomatch: true
-      ips_allow:
-        - __: merge-last
-        - 192.168.12.38/32
-    mysql:
-      block_nomatch: true
-      ips_allow:
-        - 172.17.0.0/24
-        - 139.99.131.14/32
-        - 193.70.87.42/32
-        - 10.0.0.0/8
-        - 91.168.3.121/32 # Mon EIP
+  install: true
+  enabled: true
+  strict: true
+
+  # To use tables, leave services undefined and set this to true
+  use_tables: true
+
+  filter:
+    INPUT:
+      rules:
+        test_ssh_rule:
+          source: 139.99.131.14/32
+          protocol: tcp
+          dport: 22
+          jump: ACCEPT
+        test_rule:
+          source: 91.168.3.121/32
+          protocol: tcp
+          match: multiport
+          dports: 80,443
+          jump: ACCEPT
+    CUSTOM_CHAIN:
+      rules:
+        some_custom_rule:
+          source: 192.168.12.0/23
+          protocol: tcp
+          dport: 2222
+          jump: REJECT
+
+  nat:
+    POSTROUTING:
+      rules:
+        masquerade:
+          source: '192.168.18.0/24'
+          destination: '10.20.0.2'
+          jump: MASQUERADE
+
+# # -*- coding: utf-8 -*-
+# # vim: ft=yaml
+# ---
+
+# firewall:
+#   enabled: True
+#   install: True
+#   strict: True
+#   ipv6: True
+#   services:
+#     ssh:
+#       block_nomatch: true
+#       ips_allow:
+#         - __: merge-last
+#         - 192.168.12.38/32
+#     mysql:
+#       block_nomatch: true
+#       ips_allow:
+#         - 172.17.0.0/24
+#         - 139.99.131.14/32
+#         - 193.70.87.42/32
+#         - 10.0.0.0/8
+#         - 91.168.3.121/32 # Mon EIP
+#   # To use tables, leave services undefined and set this to true
+#   use_tables: true
+
+#   filter:
+#     INPUT:
+#       rules:
+#         test_ssh_rule:
+#           protocol: tcp
+#           dport: 22
+#           source: '139.99.131.14/32'
+#           destination: '193.70.87.42'
+#           jump: ACCEPT
