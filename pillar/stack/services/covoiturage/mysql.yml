@@ -3,7 +3,6 @@
 
 mysql:
   server:
-    host: 127.0.0.1
     mysqld:
       wait_timeout: 1800
     #root_user: 'root'
