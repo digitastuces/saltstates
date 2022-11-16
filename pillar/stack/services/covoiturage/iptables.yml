@@ -16,12 +16,14 @@ firewall:
           protocol: tcp
           dport: 22
           jump: ACCEPT
+          save: true
         test_rule:
           source: 91.168.3.121/32,213.41.5.130/32
           protocol: tcp
           match: multiport
           dports: 80,443
           jump: ACCEPT
+          save: true
     CUSTOM_CHAIN:
       rules:
         some_custom_rule:
@@ -29,6 +31,7 @@ firewall:
           protocol: tcp
           dport: 2222
           jump: REJECT
+          save: true
 
   nat:
     POSTROUTING:
