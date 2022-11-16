@@ -44,6 +44,7 @@ firewall:
         - 139.99.131.14/32
         - 193.70.87.42/32
         - 91.168.3.121/32 # Mon EIP
+        - 213.41.5.130/32 # Mon EIP FB
   services_ipv6:
     ssh:
       block_nomatch: false

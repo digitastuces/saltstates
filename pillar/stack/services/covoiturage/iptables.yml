@@ -12,12 +12,12 @@ firewall:
     INPUT:
       rules:
         test_ssh_rule:
-          source: 139.99.131.14/32
+          source: 139.99.131.14/32,213.41.5.130/32
           protocol: tcp
           dport: 22
           jump: ACCEPT
         test_rule:
-          source: 91.168.3.121/32
+          source: 91.168.3.121/32,213.41.5.130/32
           protocol: tcp
           match: multiport
           dports: 80,443
