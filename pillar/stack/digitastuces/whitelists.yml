@@ -8,14 +8,15 @@ firewall:
   strict: True
   ipv6: True
   services:
-    # ssh:
-    #   block_nomatch: true
-    #   ips_allow:
-    #     - 172.17.0.0/24
-    #     - 139.99.131.14/32
-    #     - 193.70.87.42/32
-    #     - 10.0.0.0/8
-    #     - 91.168.3.121/32 # Mon EIP
+    ssh:
+      block_nomatch: true
+      ips_allow:
+        - 172.17.0.0/24
+        - 139.99.131.14/32
+        - 193.70.87.42/32
+        - 91.168.3.121/32 # Mon EIP
+        - 213.41.5.130/32 # Mon EIP FB
+        - 169.254.11.19/32
     http:
       block_nomatch: false
       protos:
@@ -39,12 +40,12 @@ firewall:
   whitelist:
     networks:
       ips_allow:
-        - 10.0.0.0/8
         - 172.17.0.0/24
         - 139.99.131.14/32
         - 193.70.87.42/32
         - 91.168.3.121/32 # Mon EIP
         - 213.41.5.130/32 # Mon EIP FB
+        - 169.254.11.19/32
   services_ipv6:
     ssh:
       block_nomatch: false
